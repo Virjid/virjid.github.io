@@ -1,0 +1,88 @@
+.posts {
+    max-width: 60vw;
+    min-height: 100vh;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    font: 300 1rem/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+}
+.post-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #e1e1e1;
+    overflow: hidden;
+    padding: 35px 0;
+}
+.post-item-wrapper .post-title {
+    padding: 0 0.625rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.375rem;
+    border-radius: 0.125rem;
+}
+.post-item-wrapper a {
+    color: #337ab7;
+    text-decoration: none;
+    background-color: transparent;
+}
+.post-item-wrapper a:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #1999ec;
+    transition: all 0.25s;
+    cursor: pointer;
+}
+.post-item-wrapper .post-excerpt {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.excerpt.typo {
+    color: #555;
+    max-width: 50%;
+}
+.post-item-wrapper .date-and-category {
+    align-self: flex-start;
+    font-size: 0.8125rem;
+    text-align: center;
+    border: 1px solid #1999ec;
+    border-radius: 0.1875rem;
+    min-width: 10%;
+}
+.post-item-wrapper .tags {
+    max-width: 25%;
+}
+
+.post-item-wrapper .tags .untagged, .post-item-wrapper .tags a {
+    display: inline-block;
+    font-size: 0.8125rem;
+    padding: 0 0.3125rem;
+    text-align: center;
+    border: 1px solid #1999ec;
+    border-radius: 0.1875rem;
+}
+
+.post-item-wrapper .date-and-category .date {
+    color: #1999ec;
+}
+.post-item-wrapper .date-and-category .date,
+.post-item-wrapper .date-and-category .categories {
+    padding: 0.125rem 0;
+}
+.post-item-wrapper .date-and-category .categories {
+    color: #fff;
+    background-color: #1999ec;
+}
+.post-item-wrapper .date-and-category .categories > a {
+    color: #fff;
+    background-color: #1999ec;
+}
+.post-item-wrapper .excerpt {
+    font-size: 0.875rem;
+    text-align: justify;
+}
+.post-item-wrapper .tags {
+    overflow: hidden;
+}

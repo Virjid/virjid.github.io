@@ -1,0 +1,73 @@
+#v-calendar {
+    box-sizing: border-box;
+    background-color: #0000008c;
+    color: white;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    position: relative;
+    width: 100%;
+}
+#v-calendar .date-list {
+    list-style: none;
+    display: flex;
+    font-family: 'Mouse';
+    justify-content: space-around;
+    font-size: 3.5rem;
+}
+#v-calendar .current-pointer h1.month {
+    font-size: 4rem;
+    font-style: oblique;
+    font-family: 'Mouse';
+}
+#v-calendar .current-pointer p {
+    font-size: 1.5rem;
+}
+#v-calendar .current-pointer .year {
+    font-size: 2rem;
+    padding-bottom: 8px;
+}
+
+
+@keyframes pointer {
+    from {
+        transform: translateY(10px);
+    }
+    20% {
+        transform: translateY(25px);
+    }
+    to {
+        transform: translateY(10px);
+    }
+}
+#v-calendar .current-pointer::after {
+    content: '';
+    display: block;
+    width: 0;
+    border-width: 20px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent; /* transparent 设置边框颜色透明 */
+    position: relative;
+    transform: translateY(10px);
+    animation-name: pointer;
+    animation-duration: .7s;
+    animation-iteration-count: infinite;
+}
+
+#v-calendar .current-pointer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    left: calc(100% / 5 / 2 * 3 - 3.5rem / 2);
+    top: calc(100% - 5.5rem);
+    transform: translate(-50%, -100%);
+}
+
+.date.today {
+    color: yellow;
+}
