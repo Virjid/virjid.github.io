@@ -38,6 +38,122 @@
             </div>
         </div>
     </div>
+    <section class="profile-close" id="cxo-profile">
+    <div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/cat.png"></div>
+    <div class="cxo-profile-inner">
+        <div class="profile-name">小腿跑乱刀</div>
+        <div class="profile-signature">for me</div>
+        <div class="friends">
+            <div>FRIENDS</div>
+            <span>
+                <a href="/tags/">所有标签</a>
+            </span>
+            <span>
+                <a href="/">归档</a>
+            </span>
+            <span>
+                <a href="//github.com/Longlongyu">friendC</a>
+            </span>
+        </div>
+        <div class="read-progress"></div>
+    </div>
+</section>
+
+
+
+<style>
+#cxo-profile.profile-close {
+    left: -10rem;
+}
+#cxo-profile {
+    width: 10rem;
+    position: fixed;
+    left: 1%;
+    top: 15%;
+    z-index: 2;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+#cxo-profile.profile-close .profile-avatar {
+    transform-origin: center;
+    transform: rotate(-45deg);
+}
+.profile-avatar {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50% 50% 5px 50%;
+    background-color: hsla(0,100%,99%,.7);
+    padding: .5rem;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    box-shadow: 0 0 8px hsla(0,0%,47%,.7);
+}
+
+#cxo-profile.profile-close .profile-avatar i {
+    transform: rotate(225deg);
+}
+.profile-avatar i {
+    position: absolute;
+    bottom: .5rem;
+    right: .8rem;
+    font-size: 1.7rem;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    transform-origin: center;
+    transform: rotate(45deg);
+    color: #333;
+    cursor: pointer;
+}
+
+#cxo-profile.profile-close .cxo-profile-inner, #cxo-profile.profile-close .profile-avatar img {
+    visibility: hidden;
+}
+.profile-avatar img {
+    border-radius: 50%;
+}
+hr, img {
+    width: 100%;
+}
+img {
+    border-style: none;
+}
+
+.cxo-profile-inner {
+    width: 11rem;
+    position: absolute;
+    top: 12rem;
+    left: .5rem;
+    color: snow;
+    text-shadow: 0 0 8px hsla(0,0%,47%,.9);
+}
+
+.profile-name {
+    font-size: 2rem;
+}
+
+.friends span {
+    margin-right: .5rem;
+}
+
+.read-progress {
+    margin-top: 1rem;
+    background-color: #2ac3ff;
+    height: 3px;
+    width: 0;
+}
+</style>
     <header class="main-header">
     <div class="banner">
         <h1><a href="/" style="color:white;text-decoration:none;">Hi~ I'm Virjid!</a></h1>
@@ -101,5 +217,14 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="/js/plugin.js"></script>
     <script>$('#v-calendar').vCalendar('init');</script>
+    <script>
+        $('.profile-avatar').click(()=>{
+            if($('#cxo-profile').hasClass('profile-close')) {
+                $('#cxo-profile').removeClass('profile-close');
+            } else {
+                $('#cxo-profile').addClass('profile-close');
+            }
+        });
+    </script>
 </body>
 </html>
