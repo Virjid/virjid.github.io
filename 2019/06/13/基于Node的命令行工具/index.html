@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/global/style.css">
     
-    <link rel="stylesheet" href="/css/index/style.css">
+    <link rel="stylesheet" href="/css/md.css">
     
     <script>
         function completeLoading() {
@@ -148,54 +148,21 @@ img {
         
     </div>
 </header> 
-    <div class="foci">
-    <div class="title">
-        <h1>FOCUS</h1>
-        <p>聚焦</p>
-    </div>
-    <div class="focus-content">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</div>
-<div class="works">
-    <div class="title">
-        <h1>WORKS</h1>
-        <p>作品</p>
-    </div>
-    <div class="work-list">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</div>
-<div class="tags">
-    <ul class="metro">
-        <li><a><span>Games</span></a></li>
-        <li><a><span>Settings</span></a></li>
-        <li><a><span>Email</span></a></li>
-        <li><a><span>Messages</span></a></li>
-        <li><a><span>Music</span></a></li>
-        <li><a><span>Favorites</span></a></li>
-        <li><a href="/tags"><span>More...</span></a></li>
-    </ul>
-</div>
-<div class="profile">
-    <div class="title">
-        <h1>ABOUT</h1>
-        <p>关于本站</p>
-    </div>
-    <div class="profile-content">
+    <div class="post-content">
+    <p>Node.js常用来开发后端应用，尤其是Web应用，但这并不代表它除此之外就无能为力了。比如命令行工具（比如当今的各种前端构建工具）、桌面应用（比如VSCode编辑器）都可以使用Node结合其它框架进行开发，下面简单介绍一下如何使用Node来创建一个命令行工具。</p>
+<a id="more"></a>
+<h2 id="Simple-Demo"><a href="#Simple-Demo" class="headerlink" title="Simple Demo"></a>Simple Demo</h2><p>创建一个名为<code>cli</code>的文件，该文件的内容为下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"><span class="keyword">const</span> [nodePath, scriptPath, name] = process.argv;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Hello'</span>, name);</span><br></pre></td></tr></table></figure>
 
-    </div>
+<p>接下来设置文件的权限为可执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x cli</span><br></pre></td></tr></table></figure>
+
+<p>最后我们使用cd命令切换至cli脚本所在目录并运行该脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./cli Virjid</span><br><span class="line"></span><br><span class="line"># 输出：</span><br><span class="line"># Hello Virjid</span><br></pre></td></tr></table></figure>
+
+<p>因为PATH环境变量中还没有包含cli脚本所在的目录，所以要使用<code>./cli</code>命令而不是<code>cli</code>命令。</p>
+<p>process.argv是Node.js的内置变量，通过该变量可以接受命令行参数。</p>
+
 </div>
     <footer class="main-footer">
     <div id="v-calendar"></div>
