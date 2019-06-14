@@ -162,7 +162,8 @@ img {
 
 <p>因为PATH环境变量中还没有包含cli脚本所在的目录，所以要使用<code>./cli</code>命令而不是<code>cli</code>命令。</p>
 <p>process.argv是Node.js的内置变量，通过该变量可以接受命令行参数。</p>
-
+<h2 id="使用命令行参数"><a href="#使用命令行参数" class="headerlink" title="使用命令行参数"></a>使用命令行参数</h2><h3 id="关于命令行参数"><a href="#关于命令行参数" class="headerlink" title="关于命令行参数"></a>关于命令行参数</h3><p>一般命令行都会允许传递参数来控制程序的动作，并且参数名都会以<code>-</code>或者<code>--</code>开头，参数名后面跟上空格再紧跟参数值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node install --save express</span><br><span class="line"># --save是</span><br></pre></td></tr></table></figure>
 </div>
     <footer class="main-footer">
     <div id="v-calendar"></div>
