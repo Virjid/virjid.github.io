@@ -228,18 +228,14 @@ img {
 <h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">6666</span>); <span class="comment">//[1]</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123; <span class="comment">//[2]</span></span><br><span class="line">        Socket socket = serverSocket.accept(); <span class="comment">//[3] </span></span><br><span class="line">        DataInputStream dataInputStream=<span class="keyword">new</span> DataInputStream(socket.getInputStream()); <span class="comment">//[4]</span></span><br><span class="line">        System.out.println(dataInputStream.readUTF());</span><br><span class="line">        dataInputStream.close(); <span class="comment">//关闭流</span></span><br><span class="line">        socket.close(); <span class="comment">//关闭套接字</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>[1] 创建服务器socket对象，设置端口号为6666,地址为默认的0.0.0.0</p>
-</li>
-<li><p>[2] 无限循环（服务器是理论上24小时运行的程序）</p>
-</li>
-<li><p>[3] 监听客户端发送的请求.accept是一个阻塞函数，这意味着如果没有客户端发送请求，服务器就会停在这一条代码不继续执行下去，直到有请求过来才会继续运行。</p>
-</li>
-<li><p>[4] socket.getInputStream()可以获取输入流，所谓输入流就是读取，它可以读取客户端发过来的数据</p>
+<li>[1] 创建服务器socket对象，设置端口号为6666,地址为默认的0.0.0.0</li>
+<li>[2] 无限循环（服务器是理论上24小时运行的程序）</li>
+<li>[3] 监听客户端发送的请求.accept是一个阻塞函数，这意味着如果没有客户端发送请求，服务器就会停在这一条代码不继续执行下去，直到有请求过来才会继续运行。</li>
+<li>[4] socket.getInputStream()可以获取输入流，所谓输入流就是读取，它可以读取客户端发过来的数据</li>
+</ul>
 <blockquote>
 <p>虽然上述代码并没有向客户端发送数据，但我们可以使用socket.getOutputStream()获得一个输出流来输出数据</p>
 </blockquote>
-</li>
-</ul>
 <h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Socket socket=<span class="keyword">new</span> Socket(<span class="string">"172.18.253.59"</span>,<span class="number">6666</span>); <span class="comment">//设置要访问的服务器端口号与地址</span></span><br><span class="line">OutputStream outputStream=socket.getOutputStream();</span><br><span class="line">DataOutputStream dataOutputStream=<span class="keyword">new</span> DataOutputStream(outputStream);</span><br><span class="line">dataOutputStream.writeUTF(<span class="string">"hello"</span>); <span class="comment">//发送（写入）数据</span></span><br><span class="line">dataOutputStream.flush();</span><br><span class="line">dataOutputStream.close();</span><br><span class="line">outputStream.close();</span><br><span class="line">socket.close();</span><br></pre></td></tr></table></figure>
 
 <h2 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h2><p>关于串口通信的步骤：</p>
