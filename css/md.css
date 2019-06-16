@@ -60,11 +60,21 @@
     .post-content .highlight .code .keyword {
       color: #42b983; }
     .post-content .highlight .code .string {
-      color: #c113a7; }
+      color: #8c0778; }
     .post-content .highlight .code .built_in {
       color: #333333; }
     .post-content .highlight .code .comment {
       color: green; }
+    .post-content .highlight .code .selector-tag {
+      color: orange; }
+    .post-content .highlight .code .selector-attr {
+      color: orange; }
+    .post-content .highlight .code .attribute {
+      color: #c113a7; }
+    .post-content .highlight .code .variable {
+      color: #00407d; }
+    .post-content .highlight .code .number {
+      color: #333; }
   .post-content code {
     margin: 0 2px;
     padding: 2px 4px;

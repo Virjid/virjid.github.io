@@ -86,7 +86,7 @@
     transform: translate(0, 0) rotate(-180deg); } }
 
 .banner {
-  height: 60vh;
+  height: 50vh;
   background-color: #8DA9CF;
   background-image: url(/img/bridge.jpg);
   background-size: cover;

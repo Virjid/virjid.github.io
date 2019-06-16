@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hello~ I'm Virjid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/global/style.css">
+    
+    <link rel="stylesheet" href="/css/md.css">
+    
+    <script>
+        function completeLoading() {
+            if (document.readyState == "complete") {
+                var loadingMask = document.getElementById('loading');
+                loadingMask.parentNode.removeChild(loadingMask);
+            }
+        }
+        document.onreadystatechange = completeLoading;
+        // document.onclick = completeLoading;
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <div>
+            <div></div><div></div><div></div><div></div>
+        </div>
+    </div>
+    <section class="profile-close" id="cxo-profile">
+    <div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/cat.png"></div>
+    <div class="cxo-profile-inner">
+        <div class="profile-name">小腿跑乱刀</div>
+        <div class="profile-signature">for me</div>
+        <div class="friends">
+            <div>FRIENDS</div>
+            <span>
+                <a href="/tags/">所有标签</a>
+            </span>
+            <span>
+                <a href="/">归档</a>
+            </span>
+            <span>
+                <a href="//github.com/Longlongyu">friendC</a>
+            </span>
+        </div>
+        <div class="read-progress"></div>
+    </div>
+</section>
+
+
+
+<style>
+#cxo-profile.profile-close {
+    left: -10rem;
+}
+#cxo-profile {
+    width: 10rem;
+    position: fixed;
+    left: 1%;
+    top: 15%;
+    z-index: 2;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+#cxo-profile.profile-close .profile-avatar {
+    transform-origin: center;
+    transform: rotate(-45deg);
+}
+.profile-avatar {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50% 50% 5px 50%;
+    background-color: hsla(0,100%,99%,.7);
+    padding: .5rem;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    box-shadow: 0 0 8px hsla(0,0%,47%,.7);
+}
+
+#cxo-profile.profile-close .profile-avatar i {
+    transform: rotate(225deg);
+}
+.profile-avatar i {
+    position: absolute;
+    bottom: .5rem;
+    right: .8rem;
+    font-size: 1.7rem;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    transform-origin: center;
+    transform: rotate(45deg);
+    color: #333;
+    cursor: pointer;
+}
+
+#cxo-profile.profile-close .cxo-profile-inner, #cxo-profile.profile-close .profile-avatar img {
+    visibility: hidden;
+}
+.profile-avatar img {
+    border-radius: 50%;
+}
+hr, img {
+    width: 100%;
+}
+img {
+    border-style: none;
+}
+
+.cxo-profile-inner {
+    width: 11rem;
+    position: absolute;
+    top: 12rem;
+    left: .5rem;
+    color: snow;
+    text-shadow: 0 0 8px hsla(0,0%,47%,.9);
+}
+
+.profile-name {
+    font-size: 2rem;
+}
+
+.friends span {
+    margin-right: .5rem;
+}
+
+.read-progress {
+    margin-top: 1rem;
+    background-color: #2ac3ff;
+    height: 3px;
+    width: 0;
+}
+</style>
+    <header class="main-header">
+    <div class="banner">
+        <h1><a href="/" style="color:white;text-decoration:none;">Hi~ I'm Virjid!</a></h1>
+        
+    </div>
+</header> 
+    <div class="post-content">
+    <p>物联网考试部分整理（临时文件）</p>
+<h2 id="Java-IO流"><a href="#Java-IO流" class="headerlink" title="Java IO流"></a>Java IO流</h2><h3 id="创建文件对象"><a href="#创建文件对象" class="headerlink" title="创建文件对象"></a>创建文件对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File file = <span class="keyword">new</span> File(path);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>file是新创建的File对象</li>
+<li>path是一个字符串， 表示相应文件的路径</li>
+</ul>
+<blockquote>
+<p>路径有<strong>相对路径</strong>和<strong>绝对路径</strong>两种表示方法，另外在Windows中使用双反斜杠<code>\\</code>对路径进行分割，而在linux下使用的是正斜杠<code>/</code>。</p>
+</blockquote>
+<h3 id="文件IO流"><a href="#文件IO流" class="headerlink" title="文件IO流"></a>文件IO流</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fis1 = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">FileInputStream fis2 = <span class="keyword">new</span> FileInputStream(srcPath);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>src是一个File对象， srcPath是一个字符串用来表示相应文件的路径</li>
+<li>如上所示，创建文件输入流有两种方式：通过文件对象或通过一个字符串路径</li>
+</ul>
+<blockquote>
+<p>文件输入流是用于读取文件的流，该文件一般称为源文件（src）。注意，所谓的读取和写入是指程序读写文件，不能理解为人读写文件。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream fos1 = <span class="keyword">new</span> FileOutStream(dest);</span><br><span class="line">FileOutputStream fos2 = <span class="keyword">new</span> FileOutStream(destPath);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dest是一个File对象， destPath是一个字符串用来表示相应文件的路径</li>
+<li>如上所示，创建文件输出流有两种方式：通过文件对象或通过一个字符串路径</li>
+</ul>
+<blockquote>
+<p>文件输出流是用于将数据写入到文件的流，该文件一般称为输出文件、目的文件（dest）。</p>
+</blockquote>
+<blockquote>
+<p>创建了文件输入、输出对象（fis、fos）后就可以用这两个对象来读写相应的文件，但是这两个对象用起来比较麻烦，所以具体的读写方法不多做笔记了。</p>
+</blockquote>
+<h3 id="包装器"><a href="#包装器" class="headerlink" title="包装器"></a>包装器</h3><p>FileOutputStream、FileInputStream用起来麻烦，可以使用包装器给它们添加功能从而变得容易使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fis = <span class="keyword">new</span> FileInputStream(path);</span><br><span class="line">InputStreamReader reader=<span class="keyword">new</span> InputStreamReader(fis);</span><br><span class="line">BufferedReader bufferReader = <span class="keyword">new</span> BufferedReader(reader);</span><br></pre></td></tr></table></figure>
+
+<p><code>InputStreamReader</code>、<code>BufferedReader</code>就是包装器流，它们就好象在原来的流的基础上包装了一层，然后获得了一个新的流，这个新的流就获得了更丰富的能力。</p>
+<blockquote>
+<p>InputStreamReader使得原来的输入流能够简单地读取文本字符串，而BufferedReader让读取变得更快、更有效率。</p>
+</blockquote>
+<p>相应地，还有输出流的包装器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(path);</span><br><span class="line">OutputStreamWriter writer = <span class="keyword">new</span> OutputStreamWriter(fos);</span><br><span class="line">BufferedWriter bufferWriter = <span class="keyword">new</span> BufferedWriter(writer);</span><br></pre></td></tr></table></figure>
+
+<h3 id="具体的一些读写操作"><a href="#具体的一些读写操作" class="headerlink" title="具体的一些读写操作"></a>具体的一些读写操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String line = bufferReader.readLine(); <span class="comment">//读取接下来的一行</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一定要注意 <strong>接下来</strong> 这个词，流是不会倒退的，当你读完一行时，再执行一次readLine方法，读取的就是下一行，前面读取的行就“流”过去了。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file.exists();</span><br><span class="line"><span class="comment">// file是一个文件对象</span></span><br><span class="line"><span class="comment">// exists用于判断file所对应的文件是否存在</span></span><br><span class="line"><span class="comment">// 存在返回true，否则返回false</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file.createNewFile();</span><br><span class="line"><span class="comment">// 用于创建与file对象所对应的文件</span></span><br><span class="line"><span class="comment">// 一般与exists配合使用：</span></span><br><span class="line"><span class="comment">// 首先判断文件是否存在，若不存在则创建</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bufferWriter.write(data);</span><br><span class="line"><span class="comment">// data是一个字符串</span></span><br><span class="line"><span class="comment">// write可以将一个字符串写入到相应的文件</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bufferWriter.flush();</span><br><span class="line"><span class="comment">// flush方法用于冲洗缓冲池</span></span><br><span class="line"><span class="comment">// 可以在写操作完毕后，调用一下flush方法</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bufferReader.close();</span><br><span class="line">bufferWriter.close();</span><br><span class="line"><span class="comment">// 只要是流，就一定要在程序的最后将其关闭！</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建一个二维码"><a href="#创建一个二维码" class="headerlink" title="创建一个二维码"></a>创建一个二维码</h2><h3 id="关于Qrcode的相关方法"><a href="#关于Qrcode的相关方法" class="headerlink" title="关于Qrcode的相关方法"></a>关于Qrcode的相关方法</h3><ul>
+<li>Qrcode qc = new Qrcode(); 创建Qrcode对象</li>
+<li>qc.setQrcodeErrorCorrect(‘L’); 设置排错率</li>
+<li>qc.setQrcodeEncodeMode(‘B’); 设置编码方式</li>
+<li>qc.setQrcodeVersion(4); 设置二维码版本（表示二维码可以存放多大的数据）</li>
+<li>qc.calQrcode(data); 生成二维码，并存储在一个二维数组中</li>
+</ul>
+<h3 id="关于Graphics2D的相关方法"><a href="#关于Graphics2D的相关方法" class="headerlink" title="关于Graphics2D的相关方法"></a>关于Graphics2D的相关方法</h3><p>前面Qrcode的方法可以用来生成二维码，而Graphics2D用来绘制二维码。</p>
+<ul>
+<li>BufferedImage img=new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB); 创建BufferedImage对象</li>
+<li>Graphics2D gs=img.createGraphics(); 获取图像的画布</li>
+<li>gs.setBackground(Color.WHITE); 设置背景色</li>
+<li>gs.clearRect(0, 0, width, height); 清空画布（从左上角(0,0)到右下角(width，height)的矩形区域全部清空）</li>
+<li>gs.setColor(Color.BLACK); 设置画笔颜色</li>
+<li>gs.fillRect(int x,int y,int width,int height); 画点，点的位置为(x,y),点的形状为矩形（宽为width，高为height）。注意，(x,y)是矩形的左上角！</li>
+<li>ImageIO.write(img,”png”,new File(path)); 将前面的img对象写入到一个图像文件，格式为png，路径为path</li>
+</ul>
+<h2 id="Socket编程"><a href="#Socket编程" class="headerlink" title="Socket编程"></a>Socket编程</h2><blockquote>
+<p>首先，我们将socket也视为一种特殊文件，计算机之间的通信是通过读写这个特殊文件来进行的，所以这里同样涉及到流（这意味着最后要掉用close）</p>
+</blockquote>
+<h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">6666</span>); <span class="comment">//[1]</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123; <span class="comment">//[2]</span></span><br><span class="line">        Socket socket = serverSocket.accept(); <span class="comment">//[3] </span></span><br><span class="line">        DataInputStream dataInputStream=<span class="keyword">new</span> DataInputStream(socket.getInputStream()); <span class="comment">//[4]</span></span><br><span class="line">        System.out.println(dataInputStream.readUTF());</span><br><span class="line">        dataInputStream.close(); <span class="comment">//关闭流</span></span><br><span class="line">        socket.close(); <span class="comment">//关闭套接字</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>[1] 创建服务器socket对象，设置端口号为6666,地址为默认的0.0.0.0</p>
+</li>
+<li><p>[2] 无限循环（服务器是理论上24小时运行的程序）</p>
+</li>
+<li><p>[3] 监听客户端发送的请求.accept是一个阻塞函数，这意味着如果没有客户端发送请求，服务器就会停在这一条代码不继续执行下去，直到有请求过来才会继续运行。</p>
+</li>
+<li><p>[4] socket.getInputStream()可以获取输入流，所谓输入流就是读取，它可以读取客户端发过来的数据</p>
+<blockquote>
+<p>虽然上述代码并没有向客户端发送数据，但我们可以使用socket.getOutputStream()获得一个输出流来输出数据</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Socket socket=<span class="keyword">new</span> Socket(<span class="string">"172.18.253.59"</span>,<span class="number">6666</span>); <span class="comment">//设置要访问的服务器端口号与地址</span></span><br><span class="line">OutputStream outputStream=socket.getOutputStream();</span><br><span class="line">DataOutputStream dataOutputStream=<span class="keyword">new</span> DataOutputStream(outputStream);</span><br><span class="line">dataOutputStream.writeUTF(<span class="string">"hello"</span>); <span class="comment">//发送（写入）数据</span></span><br><span class="line">dataOutputStream.flush();</span><br><span class="line">dataOutputStream.close();</span><br><span class="line">outputStream.close();</span><br><span class="line">socket.close();</span><br></pre></td></tr></table></figure>
+
+<h2 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h2><p>关于串口通信的步骤：</p>
+<ul>
+<li>根据串口名获取串口</li>
+<li>打开串口，设置等待时间</li>
+<li>设置参数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CommPortIdentifier commPortIdentifier=CommPortIdentifier.getPortIdentifier(serialname);</span><br><span class="line">commPort=commPortIdentifier.open(serialname, <span class="number">2000</span>);</span><br><span class="line">serialPort=(SerialPort)commPort;</span><br><span class="line">serialPort.setSerialPortParams</span><br><span class="line">					(baudrate, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE); <span class="comment">//baudrate表示波谱率</span></span><br></pre></td></tr></table></figure>
+</div>
+    <footer class="main-footer">
+    <div id="v-calendar"></div>
+    <div id="author">Copyright © 2019 by Virjid. <br>Thanks the photos by my friend Sean.</div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/plugin.js"></script>
+    <script>$('#v-calendar').vCalendar('init');</script>
+    <script>
+        $('.profile-avatar').click(()=>{
+            if($('#cxo-profile').hasClass('profile-close')) {
+                $('#cxo-profile').removeClass('profile-close');
+            } else {
+                $('#cxo-profile').addClass('profile-close');
+            }
+        });
+    </script>
+</body>
+</html>
