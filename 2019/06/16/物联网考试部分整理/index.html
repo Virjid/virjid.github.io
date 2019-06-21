@@ -6,8 +6,9 @@
     <title>Hello~ I'm Virjid</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/global/style.css">
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css">
     
-    <link rel="stylesheet" href="/css/md.css">
+        <link rel="stylesheet" href="/css/md.css">
     
     <script>
         function completeLoading() {
@@ -17,7 +18,6 @@
             }
         }
         document.onreadystatechange = completeLoading;
-        // document.onclick = completeLoading;
     </script>
 </head>
 <body>
@@ -30,126 +30,19 @@
     <div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/cat.png"></div>
     <div class="cxo-profile-inner">
         <div class="profile-name">小腿跑乱刀</div>
-        <div class="profile-signature">for me</div>
-        <div class="friends">
-            <div>FRIENDS</div>
-            <span>
-                <a href="/tags/">所有标签</a>
-            </span>
-            <span>
-                <a href="/">归档</a>
-            </span>
-            <span>
-                <a href="//github.com/Longlongyu">friendC</a>
-            </span>
-        </div>
         <div class="read-progress"></div>
     </div>
 </section>
-
-
-
-<style>
-#cxo-profile.profile-close {
-    left: -10rem;
-}
-#cxo-profile {
-    width: 10rem;
-    position: fixed;
-    left: 1%;
-    top: 15%;
-    z-index: 2;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -ms-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
-
-#cxo-profile.profile-close .profile-avatar {
-    transform-origin: center;
-    transform: rotate(-45deg);
-}
-.profile-avatar {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50% 50% 5px 50%;
-    background-color: hsla(0,100%,99%,.7);
-    padding: .5rem;
-    position: absolute;
-    top: 0;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -ms-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-    box-shadow: 0 0 8px hsla(0,0%,47%,.7);
-}
-
-#cxo-profile.profile-close .profile-avatar i {
-    transform: rotate(225deg);
-}
-.profile-avatar i {
-    position: absolute;
-    bottom: .5rem;
-    right: .8rem;
-    font-size: 1.7rem;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -ms-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-    transform-origin: center;
-    transform: rotate(45deg);
-    color: #333;
-    cursor: pointer;
-}
-
-#cxo-profile.profile-close .cxo-profile-inner, #cxo-profile.profile-close .profile-avatar img {
-    visibility: hidden;
-}
-.profile-avatar img {
-    border-radius: 50%;
-}
-hr, img {
-    width: 100%;
-}
-img {
-    border-style: none;
-}
-
-.cxo-profile-inner {
-    width: 11rem;
-    position: absolute;
-    top: 12rem;
-    left: .5rem;
-    color: snow;
-    text-shadow: 0 0 8px hsla(0,0%,47%,.9);
-}
-
-.profile-name {
-    font-size: 2rem;
-}
-
-.friends span {
-    margin-right: .5rem;
-}
-
-.read-progress {
-    margin-top: 1rem;
-    background-color: #2ac3ff;
-    height: 3px;
-    width: 0;
-}
-</style>
     <header class="main-header">
+    
     <div class="banner">
         <h1><a href="/" style="color:white;text-decoration:none;">Hi~ I'm Virjid!</a></h1>
-        
     </div>
+    
 </header> 
     <div class="post-content">
-    <p>物联网考试部分整理（临时文件）</p>
+    <main>
+        <p>物联网考试部分整理（临时文件）</p>
 <a id="more"></a>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="物联网的定义"><a href="#物联网的定义" class="headerlink" title="物联网的定义"></a>物联网的定义</h3><p>物联网是在互联网的基础上，利用频射标签与无线传感器网络技术，构建一个覆盖世界上所有人与物的网络信息系统，从而实现<strong>物与物、物与人</strong>之间的互连。</p>
 <ul>
@@ -292,6 +185,8 @@ img {
 <li>设置参数</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CommPortIdentifier commPortIdentifier=CommPortIdentifier.getPortIdentifier(serialname);</span><br><span class="line">commPort=commPortIdentifier.open(serialname, <span class="number">2000</span>);</span><br><span class="line">serialPort=(SerialPort)commPort;</span><br><span class="line">serialPort.setSerialPortParams(baudrate, <span class="comment">//baudrate表示波谱率</span></span><br><span class="line">                               SerialPort.DATABITS_8,</span><br><span class="line">                               SerialPort.STOPBITS_1,</span><br><span class="line">                               SerialPort.PARITY_NONE);</span><br></pre></td></tr></table></figure>
+    </main>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#物联网的定义"><span class="toc-text">物联网的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#物联网发展面临的问题"><span class="toc-text">物联网发展面临的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#物联网的三个层次"><span class="toc-text">物联网的三个层次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传感层"><span class="toc-text">传感层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络层"><span class="toc-text">网络层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用层"><span class="toc-text">应用层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传感器的定义"><span class="toc-text">传感器的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RFID"><span class="toc-text">RFID</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-IO流"><span class="toc-text">Java IO流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建文件对象"><span class="toc-text">创建文件对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件IO流"><span class="toc-text">文件IO流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包装器"><span class="toc-text">包装器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体的一些读写操作"><span class="toc-text">具体的一些读写操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个二维码"><span class="toc-text">创建一个二维码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于Qrcode的相关方法"><span class="toc-text">关于Qrcode的相关方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于Graphics2D的相关方法"><span class="toc-text">关于Graphics2D的相关方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket编程"><span class="toc-text">Socket编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器端"><span class="toc-text">服务器端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端"><span class="toc-text">客户端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#串口通信"><span class="toc-text">串口通信</span></a></li></ol>
 </div>
     <footer class="main-footer">
     <div id="v-calendar"></div>

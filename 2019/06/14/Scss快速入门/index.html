@@ -6,8 +6,9 @@
     <title>Hello~ I'm Virjid</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/global/style.css">
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css">
     
-    <link rel="stylesheet" href="/css/md.css">
+        <link rel="stylesheet" href="/css/md.css">
     
     <script>
         function completeLoading() {
@@ -17,7 +18,6 @@
             }
         }
         document.onreadystatechange = completeLoading;
-        // document.onclick = completeLoading;
     </script>
 </head>
 <body>
@@ -30,126 +30,19 @@
     <div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/cat.png"></div>
     <div class="cxo-profile-inner">
         <div class="profile-name">小腿跑乱刀</div>
-        <div class="profile-signature">for me</div>
-        <div class="friends">
-            <div>FRIENDS</div>
-            <span>
-                <a href="/tags/">所有标签</a>
-            </span>
-            <span>
-                <a href="/">归档</a>
-            </span>
-            <span>
-                <a href="//github.com/Longlongyu">friendC</a>
-            </span>
-        </div>
         <div class="read-progress"></div>
     </div>
 </section>
-
-
-
-<style>
-#cxo-profile.profile-close {
-    left: -10rem;
-}
-#cxo-profile {
-    width: 10rem;
-    position: fixed;
-    left: 1%;
-    top: 15%;
-    z-index: 2;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -ms-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
-
-#cxo-profile.profile-close .profile-avatar {
-    transform-origin: center;
-    transform: rotate(-45deg);
-}
-.profile-avatar {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50% 50% 5px 50%;
-    background-color: hsla(0,100%,99%,.7);
-    padding: .5rem;
-    position: absolute;
-    top: 0;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -ms-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-    box-shadow: 0 0 8px hsla(0,0%,47%,.7);
-}
-
-#cxo-profile.profile-close .profile-avatar i {
-    transform: rotate(225deg);
-}
-.profile-avatar i {
-    position: absolute;
-    bottom: .5rem;
-    right: .8rem;
-    font-size: 1.7rem;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -ms-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-    transform-origin: center;
-    transform: rotate(45deg);
-    color: #333;
-    cursor: pointer;
-}
-
-#cxo-profile.profile-close .cxo-profile-inner, #cxo-profile.profile-close .profile-avatar img {
-    visibility: hidden;
-}
-.profile-avatar img {
-    border-radius: 50%;
-}
-hr, img {
-    width: 100%;
-}
-img {
-    border-style: none;
-}
-
-.cxo-profile-inner {
-    width: 11rem;
-    position: absolute;
-    top: 12rem;
-    left: .5rem;
-    color: snow;
-    text-shadow: 0 0 8px hsla(0,0%,47%,.9);
-}
-
-.profile-name {
-    font-size: 2rem;
-}
-
-.friends span {
-    margin-right: .5rem;
-}
-
-.read-progress {
-    margin-top: 1rem;
-    background-color: #2ac3ff;
-    height: 3px;
-    width: 0;
-}
-</style>
     <header class="main-header">
+    
     <div class="banner">
         <h1><a href="/" style="color:white;text-decoration:none;">Hi~ I'm Virjid!</a></h1>
-        
     </div>
+    
 </header> 
     <div class="post-content">
-    <p>CSS在控制样式上虽然十分强大，但它所编写出来的文件实在是难以维护。为了解决这个痛点，有一些CSS预处理器相继出现，其中Scss就是一个强大的CSS预处理器，赋予了CSS变量、继承等一定的编程特性。</p>
+    <main>
+        <p>CSS在控制样式上虽然十分强大，但它所编写出来的文件实在是难以维护。为了解决这个痛点，有一些CSS预处理器相继出现，其中Scss就是一个强大的CSS预处理器，赋予了CSS变量、继承等一定的编程特性。</p>
 <a id="more"></a>
 
 <h2 id="Scss中的变量"><a href="#Scss中的变量" class="headerlink" title="Scss中的变量"></a>Scss中的变量</h2><h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$default-fm</span>: Helvetica, arial, freesans, clean, sans-serif;</span><br></pre></td></tr></table></figure>
@@ -234,6 +127,8 @@ img {
 
 <p>上面代码以960px为基准建立了简单的流式网格布局，SASS提供的算术运算符让开发人员可以更容易的将像素值转换为百分比，最终生成的CSS样式如下所示：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">article</span><span class="selector-attr">[role="main"]</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">62.5%</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">aside</span><span class="selector-attr">[role="complementary"]</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">31.25%</span>; &#125;</span><br></pre></td></tr></table></figure>
+    </main>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scss中的变量"><span class="toc-text">Scss中的变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义变量"><span class="toc-text">定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用变量"><span class="toc-text">引用变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量的覆盖"><span class="toc-text">变量的覆盖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#规则块的嵌套"><span class="toc-text">规则块的嵌套</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#后代选择器"><span class="toc-text">后代选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#amp-标识符"><span class="toc-text">&amp;标识符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与嵌套相关的其它选择器"><span class="toc-text">与嵌套相关的其它选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性的嵌套"><span class="toc-text">属性的嵌套</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引入"><span class="toc-text">引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#混合"><span class="toc-text">混合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#继承"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作符"><span class="toc-text">操作符</span></a></li></ol>
 </div>
     <footer class="main-footer">
     <div id="v-calendar"></div>

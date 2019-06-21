@@ -86,7 +86,7 @@
     transform: translate(0, 0) rotate(-180deg); } }
 
 .banner {
-  height: 50vh;
+  height: 100vh;
   background-color: #8DA9CF;
   background-image: url(/img/bridge.jpg);
   background-size: cover;
@@ -305,3 +305,85 @@
 
 .date.today {
   color: yellow; }
+
+#cxo-profile.profile-close {
+  left: -10rem; }
+
+#cxo-profile {
+  width: 10rem;
+  position: fixed;
+  left: 1%;
+  top: 15%;
+  z-index: 2;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out; }
+
+#cxo-profile.profile-close .profile-avatar {
+  transform-origin: center;
+  transform: rotate(-45deg); }
+
+.profile-avatar {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50% 50% 5px 50%;
+  background-color: rgba(255, 250, 250, 0.7);
+  padding: .5rem;
+  position: absolute;
+  top: 0;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  box-shadow: 0 0 8px rgba(120, 120, 120, 0.7); }
+
+#cxo-profile.profile-close .profile-avatar i {
+  transform: rotate(225deg); }
+
+.profile-avatar i {
+  position: absolute;
+  bottom: .5rem;
+  right: .8rem;
+  font-size: 1.7rem;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  transform-origin: center;
+  transform: rotate(45deg);
+  color: #333;
+  cursor: pointer; }
+
+#cxo-profile.profile-close .cxo-profile-inner, #cxo-profile.profile-close .profile-avatar img {
+  visibility: hidden; }
+
+.profile-avatar img {
+  border-radius: 50%; }
+
+#cxo-profile img {
+  width: 100%;
+  border-style: none; }
+
+.cxo-profile-inner {
+  width: 11rem;
+  position: absolute;
+  top: 12rem;
+  left: .5rem;
+  color: snow;
+  text-shadow: 0 0 8px rgba(120, 120, 120, 0.9); }
+
+.profile-name {
+  font-size: 2rem; }
+
+.friends span {
+  margin-right: .5rem; }
+
+.read-progress {
+  margin-top: 1rem;
+  background-color: #2ac3ff;
+  height: 3px;
+  width: 0; }
