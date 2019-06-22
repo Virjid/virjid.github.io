@@ -45,8 +45,7 @@
         <p>Gulp与Grunt一样，也是一个自动任务运行器。它充分借鉴了Unix操作系统的管道（pipe）思想，很多人认为，在操作上，它要比Grunt简单。</p>
 <a id="more"></a>
 
-
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>首先对Glup进行安装（下面的两条命令都需要执行）：</p>
+<h2 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h2><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p>首先对Glup进行安装（下面的两条命令都需要执行）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gulp-cli</span><br><span class="line"></span><br><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure>
 
 <p>Gulp有一个 <strong>全局安装的命令行接口<code>gulp-cli</code></strong> 和一个 <strong>本地安装的<code>gulp</code></strong> 。其中本地gulp才是核心，它提供了所有的API并负责执行所有的构建任务，而命令行接口仅仅负责检查本地gulp并去启动它。</p>
@@ -56,24 +55,24 @@
 <p>安装完Glup工具后，我们还需要根据具体的任务安装相应的Glup插件。比如，当我们需要压缩JS代码时，常常会用到<code>gulp-uglify</code>插件模块：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-uglify</span><br></pre></td></tr></table></figure>
 
-<h2 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h2><p>Glup安装完成后，在项目根目录下创建<code>glupfile.js</code>文件，它是Glup的配置文件。一个简单的glupfile.js文件内容可以是这样的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);               <span class="comment">// &lt;- 加载gulp模块</span></span><br><span class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);      <span class="comment">// &lt;- 加载插件</span></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'minify'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;         <span class="comment">// &lt;- 创建一个Gulp任务，一个Gulp任务相当于一个函数</span></span><br><span class="line">  gulp.src(<span class="string">'js/app.js'</span>)</span><br><span class="line">    .pipe(uglify())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'build'</span>))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Gulpfile-js"><a href="#Gulpfile-js" class="headerlink" title="Gulpfile.js"></a>Gulpfile.js</h3><p>Glup安装完成后，在项目根目录下创建<code>glupfile.js</code>文件，它是Glup的配置文件，并且Gulp会去<strong>自动</strong>寻找它。一个简单的glupfile.js文件内容可以是这样的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>); <span class="comment">// &lt;- 加载gulp模块</span></span><br><span class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>); <span class="comment">// &lt;- 加载插件</span></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'minify'</span>, ()=&gt; &#123; <span class="comment">// &lt;- 创建一个Gulp任务，一个Gulp任务相当于一个函数</span></span><br><span class="line">  gulp.src(<span class="string">'js/app.js'</span>)</span><br><span class="line">    .pipe(uglify())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'build'</span>))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，gulpfile.js加载gulp和gulp-uglify模块之后，使用gulp模块的task方法指定任务minify。task方法有两个参数，第一个是任务名，第二个是任务函数。在任务函数中，使用gulp模块的src方法，指定所要处理的文件，然后使用pipe方法，将上一步的输出转为当前的输入，进行链式处理。</p>
 <p>task方法的回调函数使用了两次pipe方法，也就是说做了两种处理。第一种处理是使用gulp-uglify模块，压缩源码；第二种处理是使用gulp模块的dest方法，将上一步的输出写入本地文件，这里是build.js（代码中省略了后缀名js）。</p>
-<p>执行minify任务时，就在项目目录中执行下面命令就可以了。</p>
+<h3 id="Run"><a href="#Run" class="headerlink" title="Run"></a>Run</h3><p>执行minify任务时，就在项目目录中执行下面命令就可以了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gulp minify</span><br></pre></td></tr></table></figure>
 
-<h2 id="Gulp模块的方法"><a href="#Gulp模块的方法" class="headerlink" title="Gulp模块的方法"></a>Gulp模块的方法</h2><h3 id="src"><a href="#src" class="headerlink" title="src()"></a>src()</h3><p>gulp模块的src方法，用于产生数据流。它的参数表示所要处理的文件，这些指定的文件会转换成数据流。参数的写法一般有以下几种形式。</p>
+<h2 id="Gulp模块的基本方法"><a href="#Gulp模块的基本方法" class="headerlink" title="Gulp模块的基本方法"></a>Gulp模块的基本方法</h2><h3 id="src"><a href="#src" class="headerlink" title="src()"></a>src()</h3><p>gulp模块的src方法，用于产生数据流。它的参数表示所要处理的文件，这些指定的文件会转换成数据流。参数的写法一般有以下几种形式。</p>
 <ul>
-<li>js/app.js：指定确切的文件名。</li>
-<li>js/*.js：某个目录所有后缀名为js的文件。</li>
-<li>js/<em>*/</em>.js：某个目录及其所有子目录中的所有后缀名为js的文件。</li>
-<li>!js/app.js：除了js/app.js以外的所有文件。</li>
-<li>*.+(js    css)：匹配项目根目录下，所有后缀名为js或css的文件。</li>
+<li><code>js/app.js</code>：指定确切的文件名。</li>
+<li><code>js/*.js</code>：某个目录所有后缀名为js的文件。</li>
+<li><code>js/**/*.js</code>：某个目录及其所有子目录中的所有后缀名为js的文件。</li>
+<li><code>!js/app.js</code>：除了js/app.js以外的所有文件。</li>
+<li><code>*.+(js    css)</code>：匹配项目根目录下，所有后缀名为js或css的文件。</li>
 </ul>
 <p>src方法的参数还可以是一个数组，用来指定多个成员。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp.src([&apos;js/**/*.js&apos;, &apos;!js/**/*.min.js&apos;])</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp.src([<span class="string">'js/**/*.js'</span>, <span class="string">'!js/**/*.min.js'</span>])</span><br></pre></td></tr></table></figure>
 
 <h3 id="dest"><a href="#dest" class="headerlink" title="dest()"></a>dest()</h3><p>dest方法将管道的输出写入文件，同时将这些输出继续输出，所以可以依次调用多次dest方法，将输出写入多个目录。如果有目录不存在，将会被新建。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gulp.src(<span class="string">'./client/templates/*.jade'</span>)</span><br><span class="line">  .pipe(jade())</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'./build/templates'</span>))</span><br><span class="line">  .pipe(minify())</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'./build/minified_templates'</span>));</span><br></pre></td></tr></table></figure>
@@ -83,54 +82,41 @@
 
 <p>配置对象有两个字段。cwd字段指定写入路径的基准目录，默认是当前目录；mode字段指定写入文件的权限，默认是0777。</p>
 <h3 id="task"><a href="#task" class="headerlink" title="task()"></a>task()</h3><p>task方法用于定义具体的任务。它的第一个参数是任务名，第二个参数是任务函数。下面是一个非常简单的任务函数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'greet'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'Hello world!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'greet'</span>,()=&gt;<span class="built_in">console</span>.log(<span class="string">'Hello World~'</span>));</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行shell命令</span></span><br><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec;</span><br><span class="line">gulp.task(<span class="string">'jekyll'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// build Jekyll</span></span><br><span class="line">  exec(<span class="string">'jekyll build'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> cb(err); <span class="comment">// return error</span></span><br><span class="line">    done(); <span class="comment">// finished task</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>执行greet任务时，终端屏幕上会出现类似于下面的情况：</p>
+<p><img src="./greet1.png" alt></p>
+<p>图中红色警告说greet任务并没有完成，实际上是因为任务是异步执行的，并且greet任务在执行完成后并没有去告知gulp，导致gulp不知道任务已经完成了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'greet'</span>,done=&gt;&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'Hello World～'</span>);</span><br><span class="line">   done();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+<p>gulp在执行任务时会将一个参数 <strong>(即上面的done)</strong> 注入到任务函数中，当我们调用done时就等价于在告知gulp该任务已经执行完毕：</p>
+<p><img src="./greet2.png" alt></p>
+<blockquote>
+<p>调用异步函数时是不会出现阻塞情况的，所以通常异步执行的函数要在执行完成后告知调用者执行情况，然后调用者才能根据情况来做相应的处理。</p>
+</blockquote>
 <p>如果一个任务的名字为default，就表明它是“默认任务”，在命令行直接输入gulp命令，就会运行该任务。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Your default task</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'default'</span>, ()=&gt;&#123;</span><br><span class="line">  <span class="comment">// Your default task</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h3 id="watch"><a href="#watch" class="headerlink" title="watch()"></a>watch()</h3><p>watch方法用于指定需要监视的文件。一旦这些文件发生变动，就运行指定任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;watch&apos;, function () &#123;</span><br><span class="line">   gulp.watch(&apos;templates/*.tmpl.html&apos;, [&apos;build&apos;]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="串行执行和并行执行"><a href="#串行执行和并行执行" class="headerlink" title="串行执行和并行执行"></a>串行执行和并行执行</h2><p>串行执行强调的是顺序，比如必须先执行完任务A才能再执行任务B;而并行执行的任务之间是没有先后顺序的。</p>
+<h3 id="series"><a href="#series" class="headerlink" title="series"></a>series</h3><p>gulp使用series方法来定义一条顺序（串行）执行的执行链：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'greet'</span>, done=&gt;&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'Hello World~'</span>);</span><br><span class="line">   done();</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'bye'</span>, done=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'See you~'</span>);</span><br><span class="line">    done();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, gulp.series(<span class="string">'greet'</span>,<span class="string">'bye'</span>,done=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'end'</span>);</span><br><span class="line">    done();</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
 
-<p>上面代码指定，一旦templates目录中的模板文件发生变化，就运行build任务。</p>
-<p>watch方法也可以用回调函数，代替指定的任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gulp.watch(&apos;templates/*.tmpl.html&apos;, function (event) &#123;</span><br><span class="line">   console.log(&apos;Event type: &apos; + event.type);</span><br><span class="line">   console.log(&apos;Event path: &apos; + event.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>另一种写法是watch方法所监控的文件发生变化时（修改、增加、删除文件），会触发change事件。可以对change事件指定回调函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var watcher = gulp.watch(&apos;templates/*.tmpl.html&apos;, [&apos;build&apos;]);</span><br><span class="line"></span><br><span class="line">watcher.on(&apos;change&apos;, function (event) &#123;</span><br><span class="line">   console.log(&apos;Event type: &apos; + event.type);</span><br><span class="line">   console.log(&apos;Event path: &apos; + event.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>除了change事件，watch方法还可能触发以下事件。</p>
+<p><img src="./series.png" alt></p>
+<blockquote>
+<p>需要注意串行执行链上的每个子任务都要告知gulp自己的执行情况，如果gulp不知道子任务的执行情况就无法继续执行下一个任务。串行执行链可以很好地控制任务之间的<strong>依赖关系</strong>，进而形成一条依赖链。</p>
+</blockquote>
+<h3 id="parallel"><a href="#parallel" class="headerlink" title="parallel"></a>parallel</h3><p>gulp使用parallel方法来定义一条并行执行的执行链，只需要将<code>series</code>改为<code>parallel</code>即可。</p>
+<h3 id="串并行混合"><a href="#串并行混合" class="headerlink" title="串并行混合"></a>串并行混合</h3><p>假设我们的执行链有如下子任务：</p>
 <ul>
-<li>end：回调函数运行完毕时触发。</li>
-<li>error：发生错误时触发。</li>
-<li>ready：当开始监听文件时触发。</li>
-<li>nomatch：没有匹配的监听文件时触发。</li>
+<li>清空所有编译结果  clean任务</li>
+<li>编译ES6的代码 scripts任务</li>
+<li>ES6语法检查 test任务</li>
+<li>SCSS编译 styles任务</li>
 </ul>
-<p>watcher对象还包含其他一些方法。</p>
-<ul>
-<li>watcher.end()：停止watcher对象，不会再调用任务或回调函数。</li>
-<li>watcher.files()：返回watcher对象监视的文件。</li>
-<li>watcher.add(glob)：增加所要监视的文件，它还可以附件第二个参数，表示回调函数。</li>
-<li>watcher.remove(filepath)：从watcher对象中移走一个监视的文件。</li>
-</ul>
-<h2 id="gulp-load-plugins模块"><a href="#gulp-load-plugins模块" class="headerlink" title="gulp-load-plugins模块"></a>gulp-load-plugins模块</h2><p>一般情况下，gulpfile.js中的模块需要一个个加载。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;),</span><br><span class="line">    jshint = require(&apos;gulp-jshint&apos;),</span><br><span class="line">    uglify = require(&apos;gulp-uglify&apos;),</span><br><span class="line">    concat = require(&apos;gulp-concat&apos;);</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;js&apos;, function () &#123;</span><br><span class="line">   return gulp.src(&apos;js/*.js&apos;)</span><br><span class="line">      .pipe(jshint())</span><br><span class="line">      .pipe(jshint.reporter(&apos;default&apos;))</span><br><span class="line">      .pipe(uglify())</span><br><span class="line">      .pipe(concat(&apos;app.js&apos;))</span><br><span class="line">      .pipe(gulp.dest(&apos;build&apos;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，除了gulp模块以外，还加载另外三个模块。</p>
-<p>这种一一加载的写法，比较麻烦。使用gulp-load-plugins模块，可以加载package.json文件中所有的gulp模块。上面的代码用gulp-load-plugins模块改写，就是下面这样。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;),</span><br><span class="line">    gulpLoadPlugins = require(&apos;gulp-load-plugins&apos;),</span><br><span class="line">    plugins = gulpLoadPlugins();</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;js&apos;, function () &#123;</span><br><span class="line">   return gulp.src(&apos;js/*.js&apos;)</span><br><span class="line">      .pipe(plugins.jshint())</span><br><span class="line">      .pipe(plugins.jshint.reporter(&apos;default&apos;))</span><br><span class="line">      .pipe(plugins.uglify())</span><br><span class="line">      .pipe(plugins.concat(&apos;app.js&apos;))</span><br><span class="line">      .pipe(gulp.dest(&apos;build&apos;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码假设package.json文件包含以下内容。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   &quot;devDependencies&quot;: &#123;</span><br><span class="line">      &quot;gulp-concat&quot;: &quot;~2.2.0&quot;,</span><br><span class="line">      &quot;gulp-uglify&quot;: &quot;~0.2.1&quot;,</span><br><span class="line">      &quot;gulp-jshint&quot;: &quot;~1.5.1&quot;,</span><br><span class="line">      &quot;gulp&quot;: &quot;~3.5.6&quot;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="gulp-livereload模块"><a href="#gulp-livereload模块" class="headerlink" title="gulp-livereload模块"></a>gulp-livereload模块</h2><p>gulp-livereload模块用于自动刷新浏览器，反映出源码的最新变化。它除了模块以外，还需要在浏览器中安装插件，用来配合源码变化。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;),</span><br><span class="line">    less = require(&apos;gulp-less&apos;),</span><br><span class="line">    livereload = require(&apos;gulp-livereload&apos;),</span><br><span class="line">    watch = require(&apos;gulp-watch&apos;);</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;less&apos;, function() &#123;</span><br><span class="line">   gulp.src(&apos;less/*.less&apos;)</span><br><span class="line">      .pipe(watch())</span><br><span class="line">      .pipe(less())</span><br><span class="line">      .pipe(gulp.dest(&apos;css&apos;))</span><br><span class="line">      .pipe(livereload());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码监视less文件，一旦编译完成，就自动刷新浏览器。</p>
+<p>我们的任务链大致长这样：<br><img src="./chain.png" alt></p>
 
     </main>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install"><span class="toc-text">Install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulpfile-js"><span class="toc-text">gulpfile.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gulp模块的方法"><span class="toc-text">Gulp模块的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#src"><span class="toc-text">src()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dest"><span class="toc-text">dest()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task"><span class="toc-text">task()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#watch"><span class="toc-text">watch()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-load-plugins模块"><span class="toc-text">gulp-load-plugins模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-livereload模块"><span class="toc-text">gulp-livereload模块</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-start"><span class="toc-text">Quick start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install"><span class="toc-text">Install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gulpfile-js"><span class="toc-text">Gulpfile.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run"><span class="toc-text">Run</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gulp模块的基本方法"><span class="toc-text">Gulp模块的基本方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#src"><span class="toc-text">src()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dest"><span class="toc-text">dest()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task"><span class="toc-text">task()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#串行执行和并行执行"><span class="toc-text">串行执行和并行执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#series"><span class="toc-text">series</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parallel"><span class="toc-text">parallel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#串并行混合"><span class="toc-text">串并行混合</span></a></li></ol></li></ol>
 </div>
     <footer class="main-footer">
     <div id="v-calendar"></div>
