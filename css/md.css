@@ -3,13 +3,15 @@
   font-family: Helvetica, arial, freesans, clean, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 1.2rem;
-  width: 50vw;
-  margin: 50px auto; }
+  display: flex;
+  margin: 50px auto;
+  justify-content: space-around; }
+  .post-content main {
+    width: 50vw; }
   .post-content .toc ol {
-    list-style-type: none;
-    margin: 15px; }
-    .post-content .toc ol li {
-      list-style-type: none; }
+    margin-left: 60px; }
+  .post-content .toc li {
+    list-style-type: none; }
   .post-content p {
     text-indent: 2em;
     margin-bottom: 1.4rem;

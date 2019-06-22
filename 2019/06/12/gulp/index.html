@@ -47,9 +47,12 @@
 
 
 <h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>首先对Glup进行安装（下面的两条命令都需要执行）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gulp</span><br><span class="line"></span><br><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gulp-cli</span><br><span class="line"></span><br><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure>
 
-<p>关于<strong>为什么要在全局和项目中都安装上Glup</strong>，其原因是全局安装gulp是为了执行gulp任务,本地安装gulp则是为了调用gulp插件的功能。</p>
+<p>Gulp有一个 <strong>全局安装的命令行接口<code>gulp-cli</code></strong> 和一个 <strong>本地安装的<code>gulp</code></strong> 。其中本地gulp才是核心，它提供了所有的API并负责执行所有的构建任务，而命令行接口仅仅负责检查本地gulp并去启动它。</p>
+<blockquote>
+<p>很多工具都会分别提供一个核心模块和一个命令行接口。命令行接口完全是为了便于用户使用工具，建议全局安装;而核心模块则是背后真正工作的程序，一般都会安装在本地。Gulp即使脱离了命令行接口也是可以运行的，你可以把它当作一个普通的Node模块来调用。</p>
+</blockquote>
 <p>安装完Glup工具后，我们还需要根据具体的任务安装相应的Glup插件。比如，当我们需要压缩JS代码时，常常会用到<code>gulp-uglify</code>插件模块：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-uglify</span><br></pre></td></tr></table></figure>
 
@@ -80,23 +83,13 @@
 
 <p>配置对象有两个字段。cwd字段指定写入路径的基准目录，默认是当前目录；mode字段指定写入文件的权限，默认是0777。</p>
 <h3 id="task"><a href="#task" class="headerlink" title="task()"></a>task()</h3><p>task方法用于定义具体的任务。它的第一个参数是任务名，第二个参数是任务函数。下面是一个非常简单的任务函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;greet&apos;, function () &#123;</span><br><span class="line">   console.log(&apos;Hello world!&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'greet'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'Hello world!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>task方法还可以指定按顺序运行的一组任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;build&apos;, [&apos;css&apos;, &apos;js&apos;, &apos;imgs&apos;]);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码先指定build任务，它由css、js、imgs三个任务所组成，task方法会并发执行这三个任务。注意，由于每个任务都是异步调用，所以没有办法保证js任务的开始运行的时间，正是css任务运行结束。</p>
-<p>如果希望各个任务严格按次序运行，可以把前一个任务写成后一个任务的依赖模块。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;css&apos;, [&apos;greet&apos;], function () &#123;</span><br><span class="line">   // Deal with CSS here</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码表明，css任务依赖greet任务，所以css一定会在greet运行完成后再运行。</p>
-<p>task方法的回调函数，还可以接受一个函数作为参数，这对执行异步任务非常有用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 执行shell命令</span><br><span class="line">var exec = require(&apos;child_process&apos;).exec;</span><br><span class="line">gulp.task(&apos;jekyll&apos;, function(cb) &#123;</span><br><span class="line">  // build Jekyll</span><br><span class="line">  exec(&apos;jekyll build&apos;, function(err) &#123;</span><br><span class="line">    if (err) return cb(err); // return error</span><br><span class="line">    cb(); // finished task</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行shell命令</span></span><br><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec;</span><br><span class="line">gulp.task(<span class="string">'jekyll'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// build Jekyll</span></span><br><span class="line">  exec(<span class="string">'jekyll build'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> cb(err); <span class="comment">// return error</span></span><br><span class="line">    done(); <span class="comment">// finished task</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>如果一个任务的名字为default，就表明它是“默认任务”，在命令行直接输入gulp命令，就会运行该任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;default&apos;, function () &#123;</span><br><span class="line">  // Your default task</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 或者</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, [&apos;styles&apos;, &apos;jshint&apos;, &apos;watch&apos;]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Your default task</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>执行的时候，直接使用gulp，就会运行styles、jshint、watch三个任务。</p>
 <h3 id="watch"><a href="#watch" class="headerlink" title="watch()"></a>watch()</h3><p>watch方法用于指定需要监视的文件。一旦这些文件发生变动，就运行指定任务。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;watch&apos;, function () &#123;</span><br><span class="line">   gulp.watch(&apos;templates/*.tmpl.html&apos;, [&apos;build&apos;]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 

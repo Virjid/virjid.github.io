@@ -128,101 +128,94 @@
   flex-direction: column;
   align-items: center;
   padding: 4rem 0; }
-
-.tags .title h1 {
-  color: white; }
-
-.metro {
-  display: flex;
-  flex-wrap: wrap;
-  width: 70vw;
-  list-style: none; }
-
-.metro li {
-  -webkit-transform: perspective(600px);
-  -ms-transform: perspective(600px);
-  transform: perspective(600px);
-  -webkit-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-transform-origin-x: 50%;
-  -ms-transform-origin-x: 50%;
-  -webkit-transform-origin-y: 50%;
-  -ms-transform-origin-y: 50%;
-  -webkit-transition: .2s -webkit-transform, 1s opacity;
-  -ms-transition: .2s -ms-transform, 1s opacity;
-  transition: .2s transform, 1s opacity;
-  height: 30vh;
-  color: #ffffff;
-  flex: 1 0 25%; }
-
-.metro li a {
-  display: block;
-  width: 100%;
-  height: 100%; }
-
-.metro li:nth-child(2) {
-  flex: 2 0 50%; }
-
-.metro li i {
-  font-size: 54px;
-  margin: 35px 0 0; }
-
-.metro li span {
-  color: rgba(255, 255, 255, 0.8);
-  text-transform: uppercase;
-  position: absolute;
-  left: 15px;
-  bottom: 15px;
-  font-size: 14px; }
-
-.metro li:nth-child(1) {
-  background: #00b6de8c; }
-
-.metro li:nth-child(2) {
-  background: #56dea78c; }
-
-.metro li:nth-child(3) {
-  background: #ff76598c; }
-
-.metro li:nth-child(4) {
-  background: #f8cd368c; }
-
-.metro li:nth-child(5) {
-  background: #f261758c; }
-
-.metro li:nth-child(6) {
-  background: #5ca7df8c; }
-
-.metro li:nth-child(7) {
-  background: #9e7ac28c; }
-
-.metro li:nth-child(4):active,
-.metro li:nth-child(1):active {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95); }
-
-.metro li:nth-child(7):active,
-.metro li:nth-child(2):active {
-  -webkit-transform: perspective(600px) rotate3d(1, 0, 0, -10deg);
-  -ms-transform: perspective(600px) rotate3d(1, 0, 0, -10deg);
-  transform: perspective(600px) rotate3d(1, 0, 0, -10deg); }
-
-.metro li:nth-child(3):active {
-  -webkit-transform: perspective(600px) rotate3d(0, 1, 0, 10deg);
-  -ms-transform: perspective(600px) rotate3d(0, 1, 0, 10deg);
-  transform: perspective(600px) rotate3d(0, 1, 0, 10deg); }
-
-.metro li:nth-child(5):active {
-  -webkit-transform: perspective(600px) rotate3d(0, 1, 0, -10deg);
-  -ms-transform: perspective(600px) rotate3d(0, 1, 0, -10deg);
-  transform: perspective(600px) rotate3d(0, 1, 0, -10deg); }
-
-.metro li:nth-child(6):active {
-  -webkit-transform: perspective(600px) rotate3d(1, 0, 0, 10deg);
-  -ms-transform: perspective(600px) rotate3d(1, 0, 0, 10deg);
-  transform: perspective(600px) rotate3d(1, 0, 0, 10deg); }
+  .tags .title h1 {
+    color: white; }
+  .tags .metro {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70vw;
+    list-style: none; }
+    .tags .metro li {
+      -webkit-transform: perspective(600px);
+      -ms-transform: perspective(600px);
+      transform: perspective(600px);
+      -webkit-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-transform-origin-x: 50%;
+      -ms-transform-origin-x: 50%;
+      -webkit-transform-origin-y: 50%;
+      -ms-transform-origin-y: 50%;
+      -webkit-transition: .2s -webkit-transform, 1s opacity, .5s background-color;
+      -ms-transition: .2s -ms-transform, 1s opacity, .5s background-color;
+      transition: .2s transform, 1s opacity, .5s background-color;
+      height: 30vh;
+      color: #ffffff;
+      flex: 1 0 25%; }
+      .tags .metro li a {
+        display: block;
+        width: 100%;
+        height: 100%; }
+      .tags .metro li i {
+        font-size: 54px;
+        margin: 35px 0 0; }
+      .tags .metro li:nth-child(2) {
+        flex: 2 0 50%; }
+      .tags .metro li span {
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        position: absolute;
+        left: 15px;
+        bottom: 15px;
+        font-size: 14px; }
+      .tags .metro li:nth-child(1) {
+        background: #00b6de8c; }
+      .tags .metro li:nth-child(2) {
+        background: #56dea78c; }
+      .tags .metro li:nth-child(3) {
+        background: #ff76598c; }
+      .tags .metro li:nth-child(4) {
+        background: #f8cd368c; }
+      .tags .metro li:nth-child(5) {
+        background: #f261758c; }
+      .tags .metro li:nth-child(6) {
+        background: #5ca7df8c; }
+      .tags .metro li:nth-child(7) {
+        background: #9e7ac28c; }
+      .tags .metro li:nth-child(1):hover {
+        background: #00b6de; }
+      .tags .metro li:nth-child(2):hover {
+        background: #56dea7; }
+      .tags .metro li:nth-child(3):hover {
+        background: #ff7659; }
+      .tags .metro li:nth-child(4):hover {
+        background: #f8cd36; }
+      .tags .metro li:nth-child(5):hover {
+        background: #f26175; }
+      .tags .metro li:nth-child(6):hover {
+        background: #5ca7df; }
+      .tags .metro li:nth-child(7):hover {
+        background: #9e7ac2; }
+      .tags .metro li:nth-child(4):active, .tags .metro li:nth-child(1):active {
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95); }
+      .tags .metro li:nth-child(7):active, .tags .metro li:nth-child(2):active {
+        -webkit-transform: perspective(600px) rotate3d(1, 0, 0, -10deg);
+        -ms-transform: perspective(600px) rotate3d(1, 0, 0, -10deg);
+        transform: perspective(600px) rotate3d(1, 0, 0, -10deg); }
+      .tags .metro li:nth-child(3):active {
+        -webkit-transform: perspective(600px) rotate3d(0, 1, 0, 10deg);
+        -ms-transform: perspective(600px) rotate3d(0, 1, 0, 10deg);
+        transform: perspective(600px) rotate3d(0, 1, 0, 10deg); }
+      .tags .metro li:nth-child(5):active {
+        -webkit-transform: perspective(600px) rotate3d(0, 1, 0, -10deg);
+        -ms-transform: perspective(600px) rotate3d(0, 1, 0, -10deg);
+        transform: perspective(600px) rotate3d(0, 1, 0, -10deg); }
+      .tags .metro li:nth-child(6):active {
+        -webkit-transform: perspective(600px) rotate3d(1, 0, 0, 10deg);
+        -ms-transform: perspective(600px) rotate3d(1, 0, 0, 10deg);
+        transform: perspective(600px) rotate3d(1, 0, 0, 10deg); }
 
 .profile {
   display: flex;

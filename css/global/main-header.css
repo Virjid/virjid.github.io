@@ -1,11 +1,11 @@
 .banner {
-  height: 100vh;
+  height: 450px;
   background-color: #8DA9CF;
-  background-image: url(/img/bridge.jpg);
+  background-image: url(/img/archive.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center bottom;
-  background-attachment: fixed;
+  background-position: center;
+  background-attachment: local;
   position: relative;
   overflow: hidden; }
   .banner h1 {
@@ -48,3 +48,7 @@
     left: 48%;
     height: 200px;
     transform: rotate(-6deg); }
+
+.banner.home {
+  background-image: url(/img/bridge.jpg);
+  background-position: center 70%; }
