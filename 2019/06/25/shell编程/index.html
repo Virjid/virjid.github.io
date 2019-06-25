@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hello~ I'm Virjid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/global/style.css">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css">
+    
+        <link rel="stylesheet" href="/css/md.css">
+    
+    <script>
+        function completeLoading() {
+            if (document.readyState == "complete") {
+                var loadingMask = document.getElementById('loading');
+                loadingMask.parentNode.removeChild(loadingMask);
+            }
+        }
+        document.onreadystatechange = completeLoading;
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <div>
+            <div></div><div></div><div></div><div></div>
+        </div>
+    </div>
+    <section class="profile-close" id="cxo-profile">
+    <div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/cat.png"></div>
+    <div class="cxo-profile-inner">
+        <div class="profile-name">小腿跑乱刀</div>
+        <div class="read-progress"></div>
+    </div>
+</section>
+    <header class="main-header">
+    
+    <div class="banner">
+        <h1><a href="/" style="color:white;text-decoration:none;">Hi~ I'm Virjid!</a></h1>
+    </div>
+    
+</header> 
+    <div class="post-content">
+    <main>
+        <h2 id="认识shell脚本"><a href="#认识shell脚本" class="headerlink" title="认识shell脚本"></a>认识shell脚本</h2><h3 id="shell-与-shell-script"><a href="#shell-与-shell-script" class="headerlink" title="shell 与 shell script"></a>shell 与 shell script</h3><p>通常，大家会把shell脚本直接简称为shell，将<code>shell</code>与<code>shell script</code>等同起来，但还是要清楚地认识到严格意义上这是不同的两个概念。</p>
+<p>shell指的是一种程序，它为用户访问系统内核服务提供了一种方式（通过命令行）。</p>
+<p>shell还允许用户编写由shell命令组成的程序并保存于文件中，shell可以读取、解析并执行该文件，该文件就被称为shell脚本。</p>
+<h3 id="shell的特点"><a href="#shell的特点" class="headerlink" title="shell的特点"></a>shell的特点</h3><ul>
+<li>shell脚本编写起来简单方便</li>
+<li>具有一定的逻辑行为能力</li>
+<li>能够轻易实现很多任务的简单化、自动化，尤其是批量处理文件这样的任务</li>
+<li>不适合字符串操作、数学计算、数据库操作等复杂操作</li>
+</ul>
+<h3 id="First-shell-script"><a href="#First-shell-script" class="headerlink" title="First shell script"></a>First shell script</h3><p>首先创建一个文本文件，命名为<code>demo.sh</code>，然后用文本编辑器（如Vim）直接打开并编辑：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">echo Hello~</span><br><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
+
+<p>其中以<code>#！</code>开头的第一行用来标识该脚本由哪一个脚本解释器执行，在这里表示使用bash来运行该脚本。bash是shell的具体实现之一，并且默认安装于大部分的Linux系统上。</p>
+<h3 id="运行shell脚本"><a href="#运行shell脚本" class="headerlink" title="运行shell脚本"></a>运行shell脚本</h3><p>运行的方式有两种：</p>
+<h4 id="作为解释器参数运行"><a href="#作为解释器参数运行" class="headerlink" title="作为解释器参数运行"></a>作为解释器参数运行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash ./demo.sh</span><br><span class="line"></span><br><span class="line"># /bin/bash 是bash的路径</span><br><span class="line"># ./demo.sh 是脚本的路径</span><br><span class="line"># 一般目录/bin都被加入到环境变量PATH中，所以原命令可以简写为 bash ./demo.sh</span><br><span class="line"># bash只是shell的一种，还可以使用其它shell来运行脚本</span><br></pre></td></tr></table></figure>
+
+<p>如果使用该方式执行脚本，命令行中就已经明确指明所使用的解释器，所以此时脚本中无需<code>#!</code>行。</p>
+<h4 id="作为可执行程序"><a href="#作为可执行程序" class="headerlink" title="作为可执行程序"></a>作为可执行程序</h4><p>首先要为脚本文件赋予相应的权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +rx ./demo.sh  #赋予脚本可执行、可读取权限</span><br></pre></td></tr></table></figure>
+
+<p>注意，使用该方式执行的脚本文件的<strong>第一行</strong>必须是<code>#!</code>行。</p>
+<p>然后执行脚本即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./demo.sh</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>顺便说一下，shell的注释是以<code>#</code>标识的，但排除<code>#!</code></p>
+</blockquote>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><p>shell中定义变量的方式和其他语言中的定义方式是差不多的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">date = "2019-06-25" # 定义变量</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h3><p>在shell中使用变量时，需要在变量名前添加美元符<code>$</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">date="2019-06-25"</span><br><span class="line">echo $date # 使用变量</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意等号两遍不能有空格！比如<code>date = &quot;2019-06-25&quot;</code>是错误的写法。</p>
+</blockquote>
+<p>双引号里的美元符会被视为变量标识符：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">date="2019-06-25"</span><br><span class="line">echo "The date of today is $date" # 使用变量</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 运行结果：</span><br><span class="line"><span class="meta">#</span> virjid @(๑•̀ㅂ•́)و✧ :~/code/shellstudy$ ./demo.sh</span><br><span class="line"><span class="meta">#</span> The date of today is 2019-06-25</span><br></pre></td></tr></table></figure>
+
+<p>使用变量的写法除了直接加美元符，还可以写成<code>${变量名}</code>，在一些情况下我们不得不用这种写法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">year=2019</span><br><span class="line">month=06</span><br><span class="line">day=25</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 为了让解释器正确识别变量的边界而添加花括号</span><br><span class="line">echo "$&#123;year&#125;_$&#123;month&#125;_$&#123;day&#125;" </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 运行结果：</span><br><span class="line"><span class="meta">#</span> virjid @(๑•̀ㅂ•́)و✧ :~/code/shellstudy$ ./demo.sh</span><br><span class="line"><span class="meta">#</span> 2019_06_25</span><br></pre></td></tr></table></figure>
+
+<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><p>按照变量的作用范围，变量可以分为局部变量和环境变量：</p>
+<ul>
+<li>局部变量只对当前的shell实例有效。</li>
+<li>环境变量是描述操作系统运行环境的一些变量，对所有shell实例都有效。</li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>在shell中，只有字符串类型和数字类型可用</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>在shell中字符串的表示很随意：</p>
+<ul>
+<li>使用单引号</li>
+<li>使用双引号</li>
+<li>不用引号<h3 id="使用单引号"><a href="#使用单引号" class="headerlink" title="使用单引号"></a>使用单引号</h3></li>
+<li>单引号中的内容不会被做修改</li>
+<li>单引号不支持转义字符</li>
+<li>单引号中不能出现单个单引号，但可成对出现，作为字符串拼接使用<h3 id="使用双引号"><a href="#使用双引号" class="headerlink" title="使用双引号"></a>使用双引号</h3></li>
+<li>双引号可以将变量替换为相应的值</li>
+<li>双引号中可以使用转义字符<h3 id="拼接字符串"><a href="#拼接字符串" class="headerlink" title="拼接字符串"></a>拼接字符串</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">user_name=virjid</span><br><span class="line">greeting1="Hello, $user_name"</span><br><span class="line">greeting2='Hello, '$user_name</span><br><span class="line">echo greeting1</span><br><span class="line">echo greeting2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 运行结果：</span><br><span class="line"><span class="meta">#</span> virjid @(๑•̀ㅂ•́)و✧ :~/code/shellstudy$ ./demo.sh</span><br><span class="line"><span class="meta">#</span> Hello, virjid</span><br><span class="line"><span class="meta">#</span> Hello, virjid</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a>获取字符串长度</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user_name="virjid"</span><br><span class="line">echo $&#123;#user_name&#125; #输出 6</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取子串"><a href="#获取子串" class="headerlink" title="获取子串"></a>获取子串</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">user_name="virjid"</span><br><span class="line">echo $&#123;user_name:0:3&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 输出 vir，表示从第0个字符开始截取，共截取3个字符</span><br><span class="line"><span class="meta">#</span> 注意，这里认为shell是以索引0作为起点的</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取字符所在位置的索引"><a href="#获取字符所在位置的索引" class="headerlink" title="获取字符所在位置的索引"></a>获取字符所在位置的索引</h3><p>获取字符v或字符i的索引<strong>并加1</strong>(即以1作为起点的索引、位置)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">user_name="virjid"</span><br><span class="line">index=`expr index "$user_name" vi`</span><br><span class="line">echo $index # 输出1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 表达式会返回最小的索引值</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="定义数组"><a href="#定义数组" class="headerlink" title="定义数组"></a>定义数组</h3><p>在shell中只能定义一维数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名=(值1 值2 ... 值n)</span><br></pre></td></tr></table></figure>
+
+<h3 id="访问数组元素"><a href="#访问数组元素" class="headerlink" title="访问数组元素"></a>访问数组元素</h3><p>访问方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;数组名[索引值n]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>@</code>可以获得所有的元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;数组名[@]&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="与数组相关的长度"><a href="#与数组相关的长度" class="headerlink" title="与数组相关的长度"></a>与数组相关的长度</h3><p>如果要查询数组的元素个数，即数组长度:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;#数组名[@]&#125;  或  $&#123;#数组名[*]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果想知道数组中某一个元素的长度：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;#数组名[索引值n]&#125;</span><br></pre></td></tr></table></figure>
+    </main>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#认识shell脚本"><span class="toc-text">认识shell脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shell-与-shell-script"><span class="toc-text">shell 与 shell script</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shell的特点"><span class="toc-text">shell的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#First-shell-script"><span class="toc-text">First shell script</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行shell脚本"><span class="toc-text">运行shell脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#作为解释器参数运行"><span class="toc-text">作为解释器参数运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#作为可执行程序"><span class="toc-text">作为可执行程序</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义变量"><span class="toc-text">定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用变量"><span class="toc-text">使用变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量类型"><span class="toc-text">变量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串"><span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用单引号"><span class="toc-text">使用单引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用双引号"><span class="toc-text">使用双引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拼接字符串"><span class="toc-text">拼接字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取字符串长度"><span class="toc-text">获取字符串长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取子串"><span class="toc-text">获取子串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取字符所在位置的索引"><span class="toc-text">获取字符所在位置的索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义数组"><span class="toc-text">定义数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#访问数组元素"><span class="toc-text">访问数组元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与数组相关的长度"><span class="toc-text">与数组相关的长度</span></a></li></ol></li></ol>
+</div>
+    <footer class="main-footer">
+    <div id="v-calendar"></div>
+    <div id="author">Copyright © 2019 by Virjid. <br>Thanks the photos by my friend Sean.</div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/plugin.js"></script>
+    <script>$('#v-calendar').vCalendar('init');</script>
+    <script>
+        $('.profile-avatar').click(()=>{
+            if($('#cxo-profile').hasClass('profile-close')) {
+                $('#cxo-profile').removeClass('profile-close');
+            } else {
+                $('#cxo-profile').addClass('profile-close');
+            }
+        });
+    </script>
+</body>
+</html>
