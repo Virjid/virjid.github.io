@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hello~ I'm Virjid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/global/style.css">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css">
+    
+        <link rel="stylesheet" href="/css/md.css">
+    
+    <script>
+        function completeLoading() {
+            if (document.readyState == "complete") {
+                var loadingMask = document.getElementById('loading');
+                loadingMask.parentNode.removeChild(loadingMask);
+            }
+        }
+        document.onreadystatechange = completeLoading;
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <div>
+            <div></div><div></div><div></div><div></div>
+        </div>
+    </div>
+    <section class="profile-close" id="cxo-profile">
+    <div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/cat.png"></div>
+    <div class="cxo-profile-inner">
+        <div class="profile-name">小腿跑乱刀</div>
+        <div class="read-progress"></div>
+    </div>
+</section>
+    <header class="main-header">
+    
+    <div class="banner">
+        <h1><a href="/" style="color:white;text-decoration:none;">Hi~ I'm Virjid!</a></h1>
+    </div>
+    
+</header> 
+    <div class="post-content">
+    <main>
+        <h2 id="MySQL命令行"><a href="#MySQL命令行" class="headerlink" title="MySQL命令行"></a>MySQL命令行</h2><h3 id="连接到MySQL的服务器"><a href="#连接到MySQL的服务器" class="headerlink" title="连接到MySQL的服务器"></a>连接到MySQL的服务器</h3><p>当安装MySQL时，通常都会自带一个命令行程序<code>mysql</code>，它是一个可以与MySQL服务器进行通信的客户端实现。</p>
+<p>mysql命令行的参数有很多，一开始仅需要记住几个有关连接服务器的参数即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">virjid @(๑•̀ㅂ•́)و✧ :~$ mysql -u root -h 127.0.0.1 -P 3306 -p</span><br><span class="line"></span><br><span class="line"># -u 即user，表示连接服务器时所使用的用户名</span><br><span class="line"># -h 即host，表示要连接的服务器IP地址，默认为localhost，即127.0.0.1</span><br><span class="line"># -P 即port，表示要连接的服务器端口号，默认为3306</span><br><span class="line"># -p 即password，表示所使用的用户需要密码才能连接</span><br></pre></td></tr></table></figure>
+
+<p>参数<code>-p</code>后面不需要跟上密码，因为密码是不能外泄的，所以输入mysql连接服务器命令敲击回车后，mysql会以不回显的方式要求你输入密码。</p>
+<h3 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h3><p>一个数据库管理系统一般都会管理多个数据库，所以当连接到MySQL服务器时，还需要明确指出想要操作的数据库。 </p>
+<p>我们可以使用<code>show databases;</code>来查看可以操作的数据库，使用<code>use &lt;数据库名&gt;</code>来选择即将操作的数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; use mysql</span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看数据库中的表"><a href="#查看数据库中的表" class="headerlink" title="查看数据库中的表"></a>查看数据库中的表</h3><p>当使用use选择完数据库时，就可以使用<code>show tables;</code>来查看数据库中的所有表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show tables;</span><br><span class="line">+---------------------------+</span><br><span class="line">| Tables_in_mysql           |</span><br><span class="line">+---------------------------+</span><br><span class="line">| columns_priv              |</span><br><span class="line">| component                 |</span><br><span class="line">| db                        |</span><br><span class="line">| default_roles             |</span><br><span class="line">| engine_cost               |</span><br><span class="line">| func                      |</span><br><span class="line">| general_log               |</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"># 这里我并没有把sys数据库的所有表给展示出来</span><br></pre></td></tr></table></figure>
+
+<p>如果要查看表的具体结构则可使用<code>describe &lt;表名&gt;;</code>，其中describe可以<strong>简写为desc</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; desc time_zone;</span><br><span class="line">+------------------+------------------+------+-----+---------+----------------+</span><br><span class="line">| Field            | Type             | Null | Key | Default | Extra          |</span><br><span class="line">+------------------+------------------+------+-----+---------+----------------+</span><br><span class="line">| Time_zone_id     | int(10) unsigned | NO   | PRI | NULL    | auto_increment |</span><br><span class="line">| Use_leap_seconds | enum(&apos;Y&apos;,&apos;N&apos;)    | NO   |     | N       |                |</span><br><span class="line">+------------------+------------------+------+-----+---------+----------------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<h2 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h2><h3 id="简单检索"><a href="#简单检索" class="headerlink" title="简单检索"></a>简单检索</h3><p>检索单个列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name <span class="keyword">from</span> products;</span><br></pre></td></tr></table></figure>
+
+<p>检索指定的多个列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_id, prod_name, prod_price <span class="keyword">from</span> products;</span><br></pre></td></tr></table></figure>
+
+<p>检索所有列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> products;</span><br></pre></td></tr></table></figure>
+
+<h3 id="DISTINCT关键字：检索不同的行"><a href="#DISTINCT关键字：检索不同的行" class="headerlink" title="DISTINCT关键字：检索不同的行"></a>DISTINCT关键字：检索不同的行</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> vend_id</span><br><span class="line"><span class="keyword">from</span> products;</span><br></pre></td></tr></table></figure>
+
+<h3 id="LIMIT子句：分页检索"><a href="#LIMIT子句：分页检索" class="headerlink" title="LIMIT子句：分页检索"></a>LIMIT子句：分页检索</h3><p>返回检索结果的前5行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">limit</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<p>从检索结果的第0行开始（包括第0行），取5行返回</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">limit</span> <span class="number">0</span>, <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面的两种检索方式，最终返回的结果应该是一样的，毕竟所谓的<strong>从检索结果的第0行开始（包括第0行），取5行返回</strong>就是<strong>返回检索结果的前5行</strong>的另一种表述方式。需要注意的是，表的开始行被认为是第0行而不是第1行。</p>
+</blockquote>
+<h3 id="ORDER-BY子句：排序"><a href="#ORDER-BY子句：排序" class="headerlink" title="ORDER BY子句：排序"></a>ORDER BY子句：排序</h3><p>按单个列排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> prod_name;</span><br></pre></td></tr></table></figure>
+
+<p>按多个列排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> prod_price, prod_name;</span><br></pre></td></tr></table></figure>
+
+<p>指定排序方向</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> prod_price <span class="keyword">desc</span>, prod_name <span class="keyword">asc</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用WHERE子句进行数据过滤"><a href="#使用WHERE子句进行数据过滤" class="headerlink" title="使用WHERE子句进行数据过滤"></a>使用WHERE子句进行数据过滤</h2><h3 id="WHERE子句常用操作符"><a href="#WHERE子句常用操作符" class="headerlink" title="WHERE子句常用操作符"></a>WHERE子句常用操作符</h3><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>=</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>BETWEEN … AND …</td>
+<td>在指定的两个值之间</td>
+</tr>
+</tbody></table>
+<h3 id="基本的数据过滤"><a href="#基本的数据过滤" class="headerlink" title="基本的数据过滤"></a>基本的数据过滤</h3><p>检查单个值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name, prod_price</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">where</span> prod_name=<span class="string">'fuses'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>检查不匹配的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> vend_id, prod_name</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">where</span> vend_id &lt;&gt; <span class="number">1003</span>;</span><br></pre></td></tr></table></figure>
+
+<p>范围值检查</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name, prod_price</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">where</span> prod_price <span class="keyword">between</span> <span class="number">5</span> <span class="keyword">and</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>空值检查</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">where</span> prod_price <span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="组合多个简单条件"><a href="#组合多个简单条件" class="headerlink" title="组合多个简单条件"></a>组合多个简单条件</h3><p>AND操作符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_id, prod_price, prod_name</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">where</span> vend_id=<span class="number">1003</span> <span class="keyword">and</span> prod_price&lt;=<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>OR操作符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name, prod_price</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">where</span> vend_id=<span class="number">1002</span> <span class="keyword">or</span> vend_id=<span class="number">1003</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>多数SQL实现中，在处理OR操作符前，会优先处理AND操作符，即AND的优先级高于OR。</p>
+</blockquote>
+<p>IN操作符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name, prod_price</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">where</span> vend_id <span class="keyword">IN</span> (<span class="number">1002</span>, <span class="number">1003</span>)</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> prod_name;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>IN操作符在语法层面上可以认为是多个OR操作符的简写。而且IN操作符具有如下优点：</p>
+<ul>
+<li>IN操作符在很多时候可以让语法变得简单清楚且直观</li>
+<li>IN操作符一般比OR操作符清单执行更快</li>
+<li>IN操作符后面可以使用子查询语句，支持更加复杂的查询</li>
+</ul>
+</blockquote>
+<p>NOT操作符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name, prod_price</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">where</span> vend_id <span class="keyword">not</span> <span class="keyword">in</span> (<span class="number">1002</span>, <span class="number">1003</span>)</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> prod_name;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>MySQL支持使用NOT对IN、BETWEEN和EXISTS子句取反。</p>
+</blockquote>
+
+    </main>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL命令行"><span class="toc-text">MySQL命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#连接到MySQL的服务器"><span class="toc-text">连接到MySQL的服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择数据库"><span class="toc-text">选择数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看数据库中的表"><span class="toc-text">查看数据库中的表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检索数据"><span class="toc-text">检索数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单检索"><span class="toc-text">简单检索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DISTINCT关键字：检索不同的行"><span class="toc-text">DISTINCT关键字：检索不同的行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LIMIT子句：分页检索"><span class="toc-text">LIMIT子句：分页检索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORDER-BY子句：排序"><span class="toc-text">ORDER BY子句：排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用WHERE子句进行数据过滤"><span class="toc-text">使用WHERE子句进行数据过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WHERE子句常用操作符"><span class="toc-text">WHERE子句常用操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本的数据过滤"><span class="toc-text">基本的数据过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合多个简单条件"><span class="toc-text">组合多个简单条件</span></a></li></ol></li></ol>
+</div>
+    <footer class="main-footer">
+    <div id="v-calendar"></div>
+    <div id="author">Copyright © 2019 by Virjid. <br>Thanks the photos by my friend Sean.</div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/plugin.js"></script>
+    <script>$('#v-calendar').vCalendar('init');</script>
+    <script>
+        $('.profile-avatar').click(()=>{
+            if($('#cxo-profile').hasClass('profile-close')) {
+                $('#cxo-profile').removeClass('profile-close');
+            } else {
+                $('#cxo-profile').addClass('profile-close');
+            }
+        });
+    </script>
+</body>
+</html>

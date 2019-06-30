@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hello~ I'm Virjid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/global/style.css">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css">
+    
+        <link rel="stylesheet" href="/css/md.css">
+    
+    <script>
+        function completeLoading() {
+            if (document.readyState == "complete") {
+                var loadingMask = document.getElementById('loading');
+                loadingMask.parentNode.removeChild(loadingMask);
+            }
+        }
+        document.onreadystatechange = completeLoading;
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <div>
+            <div></div><div></div><div></div><div></div>
+        </div>
+    </div>
+    <section class="profile-close" id="cxo-profile">
+    <div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/cat.png"></div>
+    <div class="cxo-profile-inner">
+        <div class="profile-name">小腿跑乱刀</div>
+        <div class="read-progress"></div>
+    </div>
+</section>
+    <header class="main-header">
+    
+    <div class="banner">
+        <h1><a href="/" style="color:white;text-decoration:none;">Hi~ I'm Virjid!</a></h1>
+    </div>
+    
+</header> 
+    <div class="post-content">
+    <main>
+        <h2 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h2><p>MySQL服务器可以并发处理多个连接，但有并发就势必会引入数据不一致的问题，比如当多个用户同时（即 并发地）购买商品（即 操作与商品信息相关的一张或多张表），很有可能出现超卖的现象。为此我们需要采取一些手段来保证一个用户的操作对其他的用户不造成影响，即保证数据的一致性，而这样的手段被称为并发控制。</p>
+<p>如果没有做好并发控制，就会造成脏读、幻读和不可重复读。另外并发是为了提高处理请求的效率，如果并发控制<strong>过于严格</strong>，势必会极大地影响服务器的处理速度。</p>
+<p>并发控制大致可以分为两类：</p>
+<ul>
+<li>乐观锁</li>
+<li>悲观锁</li>
+</ul>
+<h2 id="悲观锁-Pessimistic-Concurrency-Control"><a href="#悲观锁-Pessimistic-Concurrency-Control" class="headerlink" title="悲观锁 Pessimistic Concurrency Control"></a>悲观锁 Pessimistic Concurrency Control</h2><p>要严格保证当一个人正在修改数据时，另一个人不会访问（可能是读，也可能是写）该数据，最可靠、最直接的方法便是<strong>不允许并发地访问该数据</strong>。</p>
+<p>一般数据库内部已经实现了相关的锁机制。借助该机制，对将要被修改的数据进行加锁，处于加锁状态的数据不可被其他人访问，仅当修改完成时才对该数据解锁。</p>
+<blockquote>
+<p>这样的并发控制保守地认为<strong>数据被修改时发生不一致的概率非常大</strong>，因此被称为<strong>悲观</strong>锁。</p>
+</blockquote>
+<p>悲观锁一般又分为两种：</p>
+<ul>
+<li>共享锁</li>
+<li>排它锁</li>
+</ul>
+<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p>对行加锁，允许数据被并发地读，但有人读数据时不允许任何人对数据做修改</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ... <span class="keyword">LOCK</span> <span class="keyword">IN</span> <span class="keyword">SHARE</span> <span class="keyword">MODE</span>; <span class="comment"># mysql语法</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="排他锁"><a href="#排他锁" class="headerlink" title="排他锁"></a>排他锁</h3><p>对行加锁，不允许并发地读写，即同一时刻仅允许一个人对该数据进行读写。</p>
+<p>一般数据库在使用INSERT/UPDATE/DELETE操作时，默认会对被操作的数据添加排他锁。</p>
+<p>如果希望在查询时也对所检索的数据添加排他锁，可以使用如下语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ... <span class="keyword">for</span> <span class="keyword">update</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="乐观锁-Optimistic-Locking"><a href="#乐观锁-Optimistic-Locking" class="headerlink" title="乐观锁 Optimistic Locking"></a>乐观锁 Optimistic Locking</h2><p>相对于悲观锁，乐观锁在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，如果发现冲突了，则让返回用户错误的信息，让用户决定如何去做。乐观并发控制会尽可能地将事务做下去，直到提交的时候才去锁定，因此不会产生任何锁，也不会出现死锁的情况。</p>
+<p>乐观锁的实现并不需要借助于数据库的锁机制，它主要包含了两个步骤：</p>
+<ul>
+<li>冲突检测</li>
+<li>数据更新</li>
+</ul>
+<p>其中一种实现方法是<strong>基于版本控制</strong>实现的。在数据库表中增加<code>version</code>列，类型为整数或时间戳。每当查询更新时，把之前查到的版本号和数据库版本号进行比对，如果当前版本号小于数据库版本号，则更新失败。</p>
+
+    </main>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#并发控制"><span class="toc-text">并发控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#悲观锁-Pessimistic-Concurrency-Control"><span class="toc-text">悲观锁 Pessimistic Concurrency Control</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共享锁"><span class="toc-text">共享锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排他锁"><span class="toc-text">排他锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#乐观锁-Optimistic-Locking"><span class="toc-text">乐观锁 Optimistic Locking</span></a></li></ol>
+</div>
+    <footer class="main-footer">
+    <div id="v-calendar"></div>
+    <div id="author">Copyright © 2019 by Virjid. <br>Thanks the photos by my friend Sean.</div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/plugin.js"></script>
+    <script>$('#v-calendar').vCalendar('init');</script>
+    <script>
+        $('.profile-avatar').click(()=>{
+            if($('#cxo-profile').hasClass('profile-close')) {
+                $('#cxo-profile').removeClass('profile-close');
+            } else {
+                $('#cxo-profile').addClass('profile-close');
+            }
+        });
+    </script>
+</body>
+</html>
