@@ -57,7 +57,7 @@
 <p>如果要查看表的具体结构则可使用<code>describe &lt;表名&gt;;</code>，其中describe可以<strong>简写为desc</strong>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; desc time_zone;</span><br><span class="line">+------------------+------------------+------+-----+---------+----------------+</span><br><span class="line">| Field            | Type             | Null | Key | Default | Extra          |</span><br><span class="line">+------------------+------------------+------+-----+---------+----------------+</span><br><span class="line">| Time_zone_id     | int(10) unsigned | NO   | PRI | NULL    | auto_increment |</span><br><span class="line">| Use_leap_seconds | enum(&apos;Y&apos;,&apos;N&apos;)    | NO   |     | N       |                |</span><br><span class="line">+------------------+------------------+------+-----+---------+----------------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
 
-<h2 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h2><h3 id="简单检索"><a href="#简单检索" class="headerlink" title="简单检索"></a>简单检索</h3><p>检索单个列</p>
+<h2 id="检索数据基础"><a href="#检索数据基础" class="headerlink" title="检索数据基础"></a>检索数据基础</h2><h3 id="简单检索"><a href="#简单检索" class="headerlink" title="简单检索"></a>简单检索</h3><p>检索单个列</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_name <span class="keyword">from</span> products;</span><br></pre></td></tr></table></figure>
 
 <p>检索指定的多个列</p>
@@ -164,9 +164,270 @@
 <blockquote>
 <p>MySQL支持使用NOT对IN、BETWEEN和EXISTS子句取反。</p>
 </blockquote>
+<h2 id="计算字段和数据处理函数"><a href="#计算字段和数据处理函数" class="headerlink" title="计算字段和数据处理函数"></a>计算字段和数据处理函数</h2><p>计算字段并不实际存在于数据库表中，而是在运行SELECT语句时创建。使用计算字段，通常是因为存储在数据表中的数据并没有满足实际的需求。</p>
+<h3 id="CONCAT函数：拼接字段"><a href="#CONCAT函数：拼接字段" class="headerlink" title="CONCAT函数：拼接字段"></a>CONCAT函数：拼接字段</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select concat(vend_name, &apos;(&apos;, vend_country, &apos;)&apos;)</span><br><span class="line">from vendors</span><br><span class="line">order by vend_name;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------------------------+</span><br><span class="line">| concat(vend_name, &apos;(&apos;, vend_country, &apos;)&apos;) |</span><br><span class="line">+-------------------------------------------+</span><br><span class="line">| ACME(USA)                                 |</span><br><span class="line">| Anvils R Us(USA)                          |</span><br><span class="line">| Furball Inc.(USA)                         |</span><br><span class="line">| Jet Set(England)                          |</span><br><span class="line">| Jouets Et Ours(France)                    |</span><br><span class="line">| LT Supplies(USA)                          |</span><br><span class="line">+-------------------------------------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用别名"><a href="#使用别名" class="headerlink" title="使用别名"></a>使用别名</h3><p><code>concat(vend_name, &#39;(&#39;, vend_country, &#39;)&#39;)</code>这样的字段名既不方便阅读，也不方便客户端应用引用该列，我们需要为计算字段取一个别名：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(vend_name, <span class="string">'('</span>, vend_country, <span class="string">')'</span>) <span class="keyword">AS</span> vend_title</span><br><span class="line"><span class="keyword">from</span> vendors</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> vend_name;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+------------------------+</span><br><span class="line">| vend_title             |</span><br><span class="line">+------------------------+</span><br><span class="line">| ACME(USA)              |</span><br><span class="line">| Anvils R Us(USA)       |</span><br><span class="line">| Furball Inc.(USA)      |</span><br><span class="line">| Jet Set(England)       |</span><br><span class="line">| Jouets Et Ours(France) |</span><br><span class="line">| LT Supplies(USA)       |</span><br><span class="line">+------------------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>在字段的后面使用AS关键词即可创建别名，在MySQL中AS可以省略。</p>
+<h3 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h3><p>可以将检索表中的各个列进行算术运算，然后将结果作为计算字段返回给客户端。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> prod_id, quantity, item_price, </span><br><span class="line">       quantity*item_price <span class="keyword">AS</span> expanded_price</span><br><span class="line"><span class="keyword">from</span> orderitems</span><br><span class="line"><span class="keyword">where</span> order_num=<span class="number">20005</span>;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+---------+----------+------------+----------------+</span><br><span class="line">| prod_id | quantity | item_price | expanded_price |</span><br><span class="line">+---------+----------+------------+----------------+</span><br><span class="line">| ANV01   |       10 |       5.99 |          59.90 |</span><br><span class="line">| ANV02   |        3 |       9.99 |          29.97 |</span><br><span class="line">| TNT2    |        5 |      10.00 |          50.00 |</span><br><span class="line">| FB      |        1 |      10.00 |          10.00 |</span><br><span class="line">+---------+----------+------------+----------------+</span><br><span class="line">4 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="文本处理函数"><a href="#文本处理函数" class="headerlink" title="文本处理函数"></a>文本处理函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Left/Right</td>
+<td>返回串左边/右边的字符</td>
+</tr>
+<tr>
+<td>Length</td>
+<td>返回串的长度</td>
+</tr>
+<tr>
+<td>char_length</td>
+<td>返回串的字符个数</td>
+</tr>
+<tr>
+<td>Locate</td>
+<td>找出串的一个字串</td>
+</tr>
+<tr>
+<td>Lower/Upper</td>
+<td>将串转换为小写</td>
+</tr>
+<tr>
+<td>Trim/LTrim/RTrim</td>
+<td>去掉串两边/左边/右边的空格</td>
+</tr>
+<tr>
+<td>Soundex</td>
+<td>返回串的SOUNDEX值</td>
+</tr>
+<tr>
+<td>SubString</td>
+<td>返回子串的字符</td>
+</tr>
+</tbody></table>
+<h3 id="日期和时间处理函数"><a href="#日期和时间处理函数" class="headerlink" title="日期和时间处理函数"></a>日期和时间处理函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AddDate</td>
+<td>增加一个日期（天、周等）</td>
+</tr>
+<tr>
+<td>AddTime</td>
+<td>增加一个时间（时、分等）</td>
+</tr>
+<tr>
+<td>CurDate</td>
+<td>返回当前日期</td>
+</tr>
+<tr>
+<td>CurTime</td>
+<td>返回当前时间</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>返回日期时间的日期部分</td>
+</tr>
+<tr>
+<td>DateDiff</td>
+<td>计算两个日期之差</td>
+</tr>
+<tr>
+<td>Date_Add</td>
+<td>高度灵活的日期运算函数</td>
+</tr>
+<tr>
+<td>Date_Format</td>
+<td>返回一个格式化的日期或时间串</td>
+</tr>
+<tr>
+<td>Day</td>
+<td>返回一个日期的天数部分</td>
+</tr>
+<tr>
+<td>DayOfWeek</td>
+<td>对于一个日期，返回对应的星期几</td>
+</tr>
+<tr>
+<td>Hour</td>
+<td>返回一个时间的小时部分</td>
+</tr>
+<tr>
+<td>Minute</td>
+<td>返回一个时间的分钟部分</td>
+</tr>
+<tr>
+<td>Month</td>
+<td>返回一个日期的月份部分</td>
+</tr>
+<tr>
+<td>Now</td>
+<td>返回当前日期和时间</td>
+</tr>
+<tr>
+<td>Second</td>
+<td>返回一个时间的秒部分</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>返回一个日期时间的时间部分</td>
+</tr>
+<tr>
+<td>Year</td>
+<td>返回一个日期的分钟部分</td>
+</tr>
+</tbody></table>
+<h3 id="数值处理函数"><a href="#数值处理函数" class="headerlink" title="数值处理函数"></a>数值处理函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Abs</td>
+<td>返回一个数的绝对值</td>
+</tr>
+<tr>
+<td>Cos</td>
+<td>返回一个角度的余弦</td>
+</tr>
+<tr>
+<td>Exp</td>
+<td>返回一个数的指数值</td>
+</tr>
+<tr>
+<td>Mod</td>
+<td>返回除操作的余数</td>
+</tr>
+<tr>
+<td>Pi</td>
+<td>返回圆周率</td>
+</tr>
+<tr>
+<td>Rand</td>
+<td>返回一个随机数</td>
+</tr>
+<tr>
+<td>Sin</td>
+<td>返回一个角度的正弦</td>
+</tr>
+<tr>
+<td>Sqrt</td>
+<td>返回一个数的平方根</td>
+</tr>
+<tr>
+<td>Tan</td>
+<td>返回一个角度的正切</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意，在数值处理函数中，有关角度的运算采用的是<strong>弧度制</strong>。</p>
+</blockquote>
+<h2 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h2><p>聚集函数（aggregate function）指运行在<strong>行组</strong>上，计算和返回<strong>单个值</strong>的函数。具体来讲，当我们检索数据时，可以将数据分为多个组，而聚集函数可以对每一个组进行相关的运算，且每组仅返回一个值。例如统计每组有多少行数据。</p>
+<p>在未分组时，则可认为只有一个组，该组包含了所有的检索数据。</p>
+<h3 id="常见的聚集函数"><a href="#常见的聚集函数" class="headerlink" title="常见的聚集函数"></a>常见的聚集函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AVG</td>
+<td>返回某列的平均值</td>
+</tr>
+<tr>
+<td>COUNT</td>
+<td>返回某列的行数</td>
+</tr>
+<tr>
+<td>MAX</td>
+<td>返回某列的最大值</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>返回某列的最小值</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>返回某列值之和</td>
+</tr>
+</tbody></table>
+<h3 id="使用举例"><a href="#使用举例" class="headerlink" title="使用举例"></a>使用举例</h3><p>AVG函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(prod_price) <span class="keyword">as</span> avg_price</span><br><span class="line"><span class="keyword">from</span> products;</span><br></pre></td></tr></table></figure>
+
+<p>COUNT函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">as</span> num_cust</span><br><span class="line"><span class="keyword">from</span> customers;</span><br></pre></td></tr></table></figure>
+
+<p>MAX函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">max</span>(prod_price) <span class="keyword">as</span> max_price</span><br><span class="line"><span class="keyword">from</span> products;</span><br></pre></td></tr></table></figure>
+
+<p>MIN函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">min</span>(prod_price) <span class="keyword">as</span> min_price</span><br><span class="line"><span class="keyword">from</span> products;</span><br></pre></td></tr></table></figure>
+
+<p>SUM函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(quantity) <span class="keyword">as</span> items_ordered</span><br><span class="line"><span class="keyword">from</span> orderitems</span><br><span class="line"><span class="keyword">where</span> order_num=<span class="number">20005</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="对数据进行分组"><a href="#对数据进行分组" class="headerlink" title="对数据进行分组"></a>对数据进行分组</h2><h3 id="GROUP-BY子句：创建分组"><a href="#GROUP-BY子句：创建分组" class="headerlink" title="GROUP BY子句：创建分组"></a>GROUP BY子句：创建分组</h3><p>只需要使用<code>GROUP BY</code>子句即可对数据进行分组，MySQL会按照group by后面的字段名进行分组：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> vend_id, <span class="keyword">COUNT</span>(*) <span class="keyword">as</span> num_prods</span><br><span class="line"><span class="keyword">from</span> products</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> vend_id;</span><br></pre></td></tr></table></figure>
+
+<p>使用GROUP BY子句应该牢记以下的规定：</p>
+<ul>
+<li>GROUP BY 子句可以包含任意数目的列。这使得能对分组进行嵌套,<br>为数据分组提供更细致的控制。</li>
+<li>如果在 GROUP BY 子句中嵌套了分组,数据将在最后规定的分组上<br>进行汇总。换句话说,在建立分组时,指定的所有列都一起计算<br>(所以不能从个别的列取回数据)。</li>
+<li>GROUP BY 子句中列出的每个列都必须是检索列或有效的表达式<br>(但不能是聚集函数)。如果在 SELECT 中使用表达式,则必须在<br>GROUP BY 子句中指定相同的表达式。不能使用别名。</li>
+<li>除聚集计算语句外, SELECT 语句中的每个列都必须在 GROUP BY 子<br>句中给出。</li>
+<li>如果分组列中具有 NULL 值,则 NULL 将作为一个分组返回。如果列<br>中有多行 NULL 值,它们将分为一组。</li>
+<li>GROUP BY 子句必须出现在 WHERE 子句之后, ORDER BY 子句之前。</li>
+</ul>
+<h3 id="HAVING子句：过滤分组"><a href="#HAVING子句：过滤分组" class="headerlink" title="HAVING子句：过滤分组"></a>HAVING子句：过滤分组</h3><p>having子句和where子句非常类似，能在where中使用的操作符也可以在having中使用。但是，where是对行进行过滤，而having则是对组进行过滤。具体来讲，where过滤的是某一行或某几行，而having过滤的是某一组或者某几组：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> cust_id, <span class="keyword">count</span>(*) <span class="keyword">as</span> orders</span><br><span class="line"><span class="keyword">from</span> orders</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> cust_id</span><br><span class="line"><span class="keyword">having</span> <span class="keyword">count</span>(*)&gt;=<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="SELECT语句中各个子句的顺序"><a href="#SELECT语句中各个子句的顺序" class="headerlink" title="SELECT语句中各个子句的顺序"></a>SELECT语句中各个子句的顺序</h2><h3 id="书写顺序"><a href="#书写顺序" class="headerlink" title="书写顺序"></a>书写顺序</h3><ol>
+<li>select  (distinct)</li>
+<li>from</li>
+<li>where</li>
+<li>group by</li>
+<li>having</li>
+<li>order by</li>
+<li>limit</li>
+</ol>
+<h3 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h3><ol>
+<li>from</li>
+<li>where</li>
+<li>group by</li>
+<li>having</li>
+<li>select</li>
+<li>distinct</li>
+<li>order by</li>
+<li>limit</li>
+</ol>
 
     </main>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL命令行"><span class="toc-text">MySQL命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#连接到MySQL的服务器"><span class="toc-text">连接到MySQL的服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择数据库"><span class="toc-text">选择数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看数据库中的表"><span class="toc-text">查看数据库中的表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检索数据"><span class="toc-text">检索数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单检索"><span class="toc-text">简单检索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DISTINCT关键字：检索不同的行"><span class="toc-text">DISTINCT关键字：检索不同的行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LIMIT子句：分页检索"><span class="toc-text">LIMIT子句：分页检索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORDER-BY子句：排序"><span class="toc-text">ORDER BY子句：排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用WHERE子句进行数据过滤"><span class="toc-text">使用WHERE子句进行数据过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WHERE子句常用操作符"><span class="toc-text">WHERE子句常用操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本的数据过滤"><span class="toc-text">基本的数据过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合多个简单条件"><span class="toc-text">组合多个简单条件</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL命令行"><span class="toc-text">MySQL命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#连接到MySQL的服务器"><span class="toc-text">连接到MySQL的服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择数据库"><span class="toc-text">选择数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看数据库中的表"><span class="toc-text">查看数据库中的表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检索数据基础"><span class="toc-text">检索数据基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单检索"><span class="toc-text">简单检索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DISTINCT关键字：检索不同的行"><span class="toc-text">DISTINCT关键字：检索不同的行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LIMIT子句：分页检索"><span class="toc-text">LIMIT子句：分页检索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORDER-BY子句：排序"><span class="toc-text">ORDER BY子句：排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用WHERE子句进行数据过滤"><span class="toc-text">使用WHERE子句进行数据过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WHERE子句常用操作符"><span class="toc-text">WHERE子句常用操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本的数据过滤"><span class="toc-text">基本的数据过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合多个简单条件"><span class="toc-text">组合多个简单条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算字段和数据处理函数"><span class="toc-text">计算字段和数据处理函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CONCAT函数：拼接字段"><span class="toc-text">CONCAT函数：拼接字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用别名"><span class="toc-text">使用别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算术运算"><span class="toc-text">算术运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本处理函数"><span class="toc-text">文本处理函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期和时间处理函数"><span class="toc-text">日期和时间处理函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值处理函数"><span class="toc-text">数值处理函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚集函数"><span class="toc-text">聚集函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常见的聚集函数"><span class="toc-text">常见的聚集函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用举例"><span class="toc-text">使用举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对数据进行分组"><span class="toc-text">对数据进行分组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GROUP-BY子句：创建分组"><span class="toc-text">GROUP BY子句：创建分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HAVING子句：过滤分组"><span class="toc-text">HAVING子句：过滤分组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SELECT语句中各个子句的顺序"><span class="toc-text">SELECT语句中各个子句的顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#书写顺序"><span class="toc-text">书写顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行顺序"><span class="toc-text">执行顺序</span></a></li></ol></li></ol>
 </div>
     <footer class="main-footer">
     <div id="v-calendar"></div>

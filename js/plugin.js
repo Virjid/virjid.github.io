@@ -51,12 +51,13 @@
 
             // }
             var tomorrow = day - 1;
-            $(`<li class="date"/>`).text(tomorrow).appendTo(date_list);
-            $(`<li class="date today"/>`).text(day).appendTo(date_list);
+            if (tomorrow<1) tomorrow = new Date(year,month-1,0).getDate();
+            $(`<li class="date"/>`).text(tomorrow<10?`0${tomorrow}`:tomorrow).appendTo(date_list);
+            $(`<li class="date today"/>`).text(day<10?`0${day}`:day).appendTo(date_list);
             var futures = [day+1,day+2,day+3];
             for (let i = 0; i < 3; i++) {
                 let date = $(`<li class="date"/>`);
-                date.text(futures[i]);
+                date.text(futures[i]<10?`0${futures[i]}`:futures[i]);
                 date.appendTo(date_list);
             }
 
