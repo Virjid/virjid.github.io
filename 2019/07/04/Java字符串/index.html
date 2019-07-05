@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hello~ I'm Virjid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/global/style.css">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css">
+    
+        <link rel="stylesheet" href="/css/md.css">
+    
+    <script>
+        function completeLoading() {
+            if (document.readyState == "complete") {
+                var loadingMask = document.getElementById('loading');
+                loadingMask.parentNode.removeChild(loadingMask);
+            }
+        }
+        document.onreadystatechange = completeLoading;
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <div>
+            <div></div><div></div><div></div><div></div>
+        </div>
+    </div>
+    <section class="profile-close" id="cxo-profile">
+    <div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/cat.png"></div>
+    <div class="cxo-profile-inner">
+        <div class="profile-name">小腿跑乱刀</div>
+        <div class="read-progress"></div>
+    </div>
+</section>
+    <header class="main-header">
+    
+    <div class="banner">
+        <h1><a href="/" style="color:white;text-decoration:none;">Hi~ I'm Virjid!</a></h1>
+    </div>
+    
+</header> 
+    <div class="post-content">
+    <main>
+        <h2 id="字符串基本概念"><a href="#字符串基本概念" class="headerlink" title="字符串基本概念"></a>字符串基本概念</h2><p>在Java中，字符串的本质是一个Unicode字符序列，类似于一个char类型的数组，但两者的区别还是挺大的。字符串类型并不是Java的原生类型，而<strong>是一个引用类型，叫做String类</strong>。</p>
+<h3 id="创建字符串"><a href="#创建字符串" class="headerlink" title="创建字符串"></a>创建字符串</h3><p>使用<strong>双引号</strong>将字符序列括起来即可创建一个字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String name = <span class="string">"Virjid"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>因为String属于引用类型，所以也可以使用new运算符来创建字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String name = <span class="keyword">new</span> String(<span class="string">"Virjid"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>两种方式是等价的，仅使用双引号不过是使用new操作符的简写方式而已。</p>
+<h3 id="空串"><a href="#空串" class="headerlink" title="空串"></a>空串</h3><p>空串是指不含任何字符的串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String empty = <span class="string">""</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="空白串"><a href="#空白串" class="headerlink" title="空白串"></a>空白串</h3><p>空白串不同于空串，由任意多个空白字符(通常指空格、制表符\t、回车换行符\n)的连续组合所得到的串称为空白串。总得来说，空白串中是含有字符的，但空串是不含有任何字符的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String whitespace = <span class="string">" \t \t    \t"</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="单字符串"><a href="#单字符串" class="headerlink" title="单字符串"></a>单字符串</h3><p>只含有一个字符的串称为单字符串，但是需要注意单字符串不等同于字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String singleString = &quot;a&quot;;</span><br><span class="line">char singleChar = &apos;a&apos;;</span><br><span class="line">// &quot;a&quot; ≠ &apos;a&apos;</span><br></pre></td></tr></table></figure>
+
+<h3 id="子串"><a href="#子串" class="headerlink" title="子串"></a>子串</h3><p>串中任意个连续的字符组成的子序列称为该串的<strong>子串</strong>，Java中可以使用成员方法<code>substring</code>来提取一个子串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String sayHello = <span class="string">"Hello World!"</span>;</span><br><span class="line">String world = sayHello.substring(<span class="number">6</span>, <span class="number">11</span>);</span><br><span class="line"></span><br><span class="line">System.out.print(world); <span class="comment">// world</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>substring 方法的第一个参数表示从串的哪个位置<strong>开始</strong>提取子串，而第二个参数则表示<strong>不想</strong>提取的第一个字符位置。</p>
+<p>对于 <code>s.substring(a, b)</code> 而言，<strong>(b-a) 表示子串的长度</strong>。</p>
+</blockquote>
+<h3 id="串的拼接"><a href="#串的拼接" class="headerlink" title="串的拼接"></a>串的拼接</h3><p>Java中可以使用加号(+) 来拼接两个字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String sayHello = <span class="string">"Hello"</span> + <span class="string">" "</span> + <span class="string">"world"</span> + <span class="string">"!"</span>;</span><br><span class="line"></span><br><span class="line">System.out.print(sayHello); <span class="comment">// Hello world!</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="从内存模型中看字符串"><a href="#从内存模型中看字符串" class="headerlink" title="从内存模型中看字符串"></a>从内存模型中看字符串</h2><h3 id="关于Java字符串的不可修改"><a href="#关于Java字符串的不可修改" class="headerlink" title="关于Java字符串的不可修改"></a>关于Java字符串的不可修改</h3><p>程序运行时，一个字符串就会占据一定的内存。所谓字符串不可被修改的意思是指：当分配一块存储空间用于存放某一个字符串后，Java便不允许我们去重写该存储空间的值了。</p>
+<p>如果我们想要对字符串s1进行修改，我们只能重新开辟一块存储空间（定义一个变量s2）用来存放修改的结果，而s1的值并没有发生任何改变：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="string">"hello"</span>;</span><br><span class="line">String s2 = s1+<span class="string">" world"</span>;</span><br><span class="line"></span><br><span class="line">System.out.println(s1); <span class="comment">// hello</span></span><br><span class="line">System.out.println(s2); <span class="comment">// hello world</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 只能将拼接的结果存放在一个新的内存空间</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h3><h3 id="空串与NULL"><a href="#空串与NULL" class="headerlink" title="空串与NULL"></a>空串与NULL</h3><h3 id="判断两个字符串是否相等"><a href="#判断两个字符串是否相等" class="headerlink" title="判断两个字符串是否相等"></a>判断两个字符串是否相等</h3><h2 id="码点与代码单元"><a href="#码点与代码单元" class="headerlink" title="码点与代码单元"></a>码点与代码单元</h2><h2 id="构建字符串"><a href="#构建字符串" class="headerlink" title="构建字符串"></a>构建字符串</h2><h2 id="String-API"><a href="#String-API" class="headerlink" title="String API"></a>String API</h2>
+    </main>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串基本概念"><span class="toc-text">字符串基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建字符串"><span class="toc-text">创建字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空串"><span class="toc-text">空串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空白串"><span class="toc-text">空白串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单字符串"><span class="toc-text">单字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#子串"><span class="toc-text">子串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#串的拼接"><span class="toc-text">串的拼接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从内存模型中看字符串"><span class="toc-text">从内存模型中看字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于Java字符串的不可修改"><span class="toc-text">关于Java字符串的不可修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串常量池"><span class="toc-text">字符串常量池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空串与NULL"><span class="toc-text">空串与NULL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断两个字符串是否相等"><span class="toc-text">判断两个字符串是否相等</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#码点与代码单元"><span class="toc-text">码点与代码单元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建字符串"><span class="toc-text">构建字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String-API"><span class="toc-text">String API</span></a></li></ol>
+</div>
+    <footer class="main-footer">
+    <div id="v-calendar"></div>
+    <div id="author">Copyright © 2019 by Virjid. <br>Thanks the photos by my friend Sean.</div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/plugin.js"></script>
+    <script>$('#v-calendar').vCalendar('init');</script>
+    <script>
+        $('.profile-avatar').click(()=>{
+            if($('#cxo-profile').hasClass('profile-close')) {
+                $('#cxo-profile').removeClass('profile-close');
+            } else {
+                $('#cxo-profile').addClass('profile-close');
+            }
+        });
+    </script>
+</body>
+</html>
