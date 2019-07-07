@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hello~ I'm Virjid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/global/style.css">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css">
+    
+        <link rel="stylesheet" href="/css/md.css">
+    
+    <script>
+        function completeLoading() {
+            if (document.readyState == "complete") {
+                var loadingMask = document.getElementById('loading');
+                loadingMask.parentNode.removeChild(loadingMask);
+            }
+        }
+        document.onreadystatechange = completeLoading;
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <div>
+            <div></div><div></div><div></div><div></div>
+        </div>
+    </div>
+    <section class="profile-close" id="cxo-profile">
+    <div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/cat.png"></div>
+    <div class="cxo-profile-inner">
+        <div class="profile-name">小腿跑乱刀</div>
+        <div class="read-progress"></div>
+    </div>
+</section>
+    <header class="main-header">
+    
+    <div class="banner">
+        <h1><a href="/" style="color:white;text-decoration:none;">Hi~ I'm Virjid!</a></h1>
+    </div>
+    
+</header> 
+    <div class="post-content">
+    <main>
+        <h2 id="Java集合类相关的接口"><a href="#Java集合类相关的接口" class="headerlink" title="Java集合类相关的接口"></a>Java集合类相关的接口</h2><h3 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h3>
+    </main>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java集合类相关的接口"><span class="toc-text">Java集合类相关的接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection接口"><span class="toc-text">Collection接口</span></a></li></ol></li></ol>
+</div>
+    <footer class="main-footer">
+    <div id="v-calendar"></div>
+    <div id="author">Copyright © 2019 by Virjid. <br>Thanks the photos by my friend Sean.</div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/plugin.js"></script>
+    <script>$('#v-calendar').vCalendar('init');</script>
+    <script>
+        $('.profile-avatar').click(()=>{
+            if($('#cxo-profile').hasClass('profile-close')) {
+                $('#cxo-profile').removeClass('profile-close');
+            } else {
+                $('#cxo-profile').addClass('profile-close');
+            }
+        });
+    </script>
+</body>
+</html>
